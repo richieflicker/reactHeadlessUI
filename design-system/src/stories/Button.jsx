@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import './button.css';
+import cls from './button.module.scss';
 
 /** Primary UI component for user interaction */
 export const Button = ({
@@ -12,11 +12,11 @@ export const Button = ({
   label,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const modeClass = primary ? cls.primary : cls.secondary;
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={[cls.storybookButton, cls[size], modeClass].join(' ')}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
