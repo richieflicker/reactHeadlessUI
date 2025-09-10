@@ -1,15 +1,14 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import cls from './Radio.module.scss';
+import cls from './Switch.module.scss';
 
-export const Radio = forwardRef(({ 
+export const Switch = forwardRef(({ 
   checked = false, 
-  name, 
-  value, 
   onChange, 
   children,
   disabled = false,
   error = false,
+  size = 'md',
   className,
   ...rest 
 }, ref) => {
@@ -18,14 +17,15 @@ export const Radio = forwardRef(({
     checked && cls.checked,
     disabled && cls.disabled,
     error && cls.error,
+    cls[`size-${size}`],
     className
   ].filter(Boolean).join(' ');
 
-  const radioClassNames = [
-    cls.radio,
-    checked && cls.radioChecked,
-    disabled && cls.radioDisabled,
-    error && cls.radioError
+  const switchClassNames = [
+    cls.switch,
+    checked && cls.switchChecked,
+    disabled && cls.switchDisabled,
+    error && cls.switchError
   ].filter(Boolean).join(' ');
 
   const handleChange = (event) => {
@@ -42,40 +42,39 @@ export const Radio = forwardRef(({
 
   return (
     <div className={classNames}>
-      <div className={cls.radioContainer}>
+      <div className={cls.switchContainer}>
         <input
           ref={ref}
-          type="radio"
-          name={name}
-          value={value}
+          type="checkbox"
           checked={checked}
           onChange={handleChange}
           disabled={disabled}
-          className={cls.radioInput}
-          aria-invalid={error}
-          aria-describedby={error ? `${rest.id || 'radio'}-error` : undefined}
+          className={cls.switchInput}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${rest.id || 'switch'}-error` : undefined}
+          role="switch"
+          aria-checked={checked}
+          aria-disabled={disabled}
           {...rest}
         />
         <div 
-          className={radioClassNames}
+          className={switchClassNames}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
         >
-          {checked && (
-            <div className={cls.radioDot} />
-          )}
+          <div className={cls.switchThumb} />
         </div>
       </div>
       {children && (
         <label 
           className={cls.label}
-          onClick={() => !disabled && handleChange({ target: { value } })}
+          onClick={() => !disabled && handleChange({ target: { checked: !checked } })}
         >
           {children}
         </label>
       )}
       {error && (
-        <div id={`${rest.id || 'radio'}-error`} className={cls.errorMessage}>
+        <div id={`${rest.id || 'switch'}-error`} className={cls.errorMessage}>
           {typeof error === 'string' ? error : 'This field has an error'}
         </div>
       )}
@@ -83,17 +82,16 @@ export const Radio = forwardRef(({
   );
 });
 
-Radio.displayName = 'Radio';
+Switch.displayName = 'Switch';
 
-Radio.propTypes = {
+Switch.propTypes = {
   checked: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   className: PropTypes.string
 };
 
-export default Radio;
+export default Switch;

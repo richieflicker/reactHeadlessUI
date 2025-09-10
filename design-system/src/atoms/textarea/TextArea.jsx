@@ -41,7 +41,7 @@ export const TextArea = forwardRef(({
         rows={rows}
         maxLength={maxLength}
         className={textareaClassNames}
-        aria-invalid={error}
+        aria-invalid={!!error}
         aria-describedby={error ? `${rest.id || 'textarea'}-error` : undefined}
         {...rest}
       />
