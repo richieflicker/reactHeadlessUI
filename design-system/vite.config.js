@@ -14,7 +14,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/theme/variables.css";`
+        // Enable SCSS processing for tests
+        api: 'modern-compiler',
+        additionalData: `@import "/workspace/design-system/src/theme/_variables.scss";`
       }
     }
   },
@@ -25,7 +27,13 @@ export default defineConfig({
           name: 'unit',
           environment: 'jsdom',
           setupFiles: ['src/test/setup.js'],
-          globals: true
+          globals: true,
+          // Configure CSS handling for tests
+          css: {
+            modules: {
+              classNameStrategy: 'stable'
+            }
+          }
         }
       },
       {
