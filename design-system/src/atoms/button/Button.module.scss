@@ -2,28 +2,135 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: var(--ds-radius-sm);
+  gap: var(--ds-spacing-2);
+  border-radius: var(--ds-radius-md);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  background-color: var(--ds-colors-primary);
-  color: var(--ds-colors-fg);
+  padding: var(--ds-spacing-2) var(--ds-spacing-4);
+  font-size: var(--ds-typography-sizes-md);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  font-family: var(--ds-typography-fontFamily-sans);
+  background-color: var(--ds-semantic-interactive-primary-default);
+  color: var(--ds-semantic-text-inverse);
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  text-decoration: none;
+  outline: none;
 }
 
-.root:hover {
-  background-color: var(--ds-colors-primaryHover);
+.root:hover:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.root:active:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-primary-active);
+  transform: translateY(0);
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
 }
 
 .root:disabled {
-  opacity: 0.6;
+  background-color: var(--ds-semantic-interactive-primary-disabled);
+  color: var(--ds-semantic-text-disabled);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-.size-sm { padding: 0.4rem 0.8rem; font-size: 0.875rem; }
-.size-md { padding: 0.6rem 1rem; font-size: 1rem; }
-.size-lg { padding: 0.8rem 1.2rem; font-size: 1.125rem; }
+/* Variants */
+.variant-primary {
+  background-color: var(--ds-semantic-interactive-primary-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+.variant-primary:hover:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-primary-hover);
+}
+
+.variant-primary:active:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-primary-active);
+}
+
+.variant-secondary {
+  background-color: var(--ds-semantic-interactive-secondary-default);
+  color: var(--ds-semantic-text-primary);
+  border: 1px solid var(--ds-semantic-border-primary);
+}
+
+.variant-secondary:hover:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-secondary-hover);
+}
+
+.variant-secondary:active:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-secondary-active);
+}
+
+.variant-danger {
+  background-color: var(--ds-semantic-interactive-danger-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+.variant-danger:hover:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-danger-hover);
+}
+
+.variant-danger:active:not(:disabled) {
+  background-color: var(--ds-semantic-interactive-danger-active);
+}
+
+.variant-link {
+  background-color: transparent;
+  color: var(--ds-semantic-interactive-primary-default);
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.variant-link:hover:not(:disabled) {
+  color: var(--ds-semantic-interactive-primary-hover);
+  text-decoration: none;
+}
+
+.variant-link:active:not(:disabled) {
+  color: var(--ds-semantic-interactive-primary-active);
+}
+
+/* Sizes */
+.size-sm { 
+  padding: var(--ds-spacing-1) var(--ds-spacing-3); 
+  font-size: var(--ds-typography-sizes-sm); 
+  gap: var(--ds-spacing-1);
+}
+
+.size-md { 
+  padding: var(--ds-spacing-2) var(--ds-spacing-4); 
+  font-size: var(--ds-typography-sizes-md); 
+  gap: var(--ds-spacing-2);
+}
+
+.size-lg { 
+  padding: var(--ds-spacing-3) var(--ds-spacing-6); 
+  font-size: var(--ds-typography-sizes-lg); 
+  gap: var(--ds-spacing-2);
+}
+
+/* Slots */
+.prefix,
+.suffix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prefix {
+  margin-right: var(--ds-spacing-1);
+}
+
+.suffix {
+  margin-left: var(--ds-spacing-1);
+}
