@@ -1,18 +1,29 @@
 import { useState } from 'react'
 import { ThemeProvider } from './theme/ThemeProvider'
+import { ThemeContextProvider } from './theme/ThemeContext'
 import { Button } from './atoms/button/Button'
+import { ThemeToggle } from './atoms/theme-toggle/ThemeToggle'
+import { ThemeShowcase } from './components/ThemeShowcase'
 import styles from './App.module.scss'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <ThemeProvider>
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h1>Design System Showcase</h1>
-          <p>Comprehensive theme system with atomic components</p>
-        </header>
+    <ThemeContextProvider>
+      <ThemeProvider>
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <div className={styles.headerContent}>
+              <div>
+                <h1>Design System Showcase</h1>
+                <p>Comprehensive theme system with atomic components</p>
+              </div>
+              <div className={styles.themeControls}>
+                <ThemeToggle size="lg" variant="outline" />
+              </div>
+            </div>
+          </header>
 
         <main className={styles.main}>
           <section className={styles.section}>
@@ -66,9 +77,39 @@ function App() {
               <Button disabled variant="link">Link Disabled</Button>
             </div>
           </section>
+          <section className={styles.section}>
+            <h2>Theme System</h2>
+            <div className={styles.themeDemo}>
+              <div className={styles.themeInfo}>
+                <p>This design system supports both light and dark themes. Use the toggle in the header to switch between themes.</p>
+                <p>The theme system uses CSS custom properties and automatically adapts all components to the selected theme.</p>
+              </div>
+              <div className={styles.themeFeatures}>
+                <div className={styles.feature}>
+                  <h3>🌓 System Preference Detection</h3>
+                  <p>Automatically detects your system's theme preference</p>
+                </div>
+                <div className={styles.feature}>
+                  <h3>💾 Persistent Storage</h3>
+                  <p>Remembers your theme choice across sessions</p>
+                </div>
+                <div className={styles.feature}>
+                  <h3>🎨 Semantic Colors</h3>
+                  <p>Uses semantic color tokens that adapt to each theme</p>
+                </div>
+                <div className={styles.feature}>
+                  <h3>⚡ Smooth Transitions</h3>
+                  <p>Seamless transitions between light and dark modes</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <ThemeShowcase />
         </main>
-      </div>
-    </ThemeProvider>
+        </div>
+      </ThemeProvider>
+    </ThemeContextProvider>
   )
 }
 
