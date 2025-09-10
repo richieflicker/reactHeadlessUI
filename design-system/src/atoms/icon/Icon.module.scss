@@ -1,0 +1,101 @@
+.root {
+  display: inline-block;
+  flex-shrink: 0;
+  color: currentColor;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+  vertical-align: middle;
+}
+
+/* Size variants */
+.size-sm {
+  width: var(--ds-spacing-4);
+  height: var(--ds-spacing-4);
+}
+
+.size-md {
+  width: var(--ds-spacing-5);
+  height: var(--ds-spacing-5);
+}
+
+.size-lg {
+  width: var(--ds-spacing-6);
+  height: var(--ds-spacing-6);
+}
+
+/* Color variants */
+.colorPrimary {
+  color: var(--ds-semantic-interactive-primary-default);
+}
+
+.colorSecondary {
+  color: var(--ds-semantic-text-secondary);
+}
+
+.colorTertiary {
+  color: var(--ds-semantic-text-tertiary);
+}
+
+.colorMuted {
+  color: var(--ds-semantic-text-muted);
+}
+
+.colorDisabled {
+  color: var(--ds-semantic-text-disabled);
+}
+
+.colorSuccess {
+  color: var(--ds-semantic-interactive-success-default);
+}
+
+.colorWarning {
+  color: var(--ds-semantic-interactive-warning-default);
+}
+
+.colorDanger {
+  color: var(--ds-semantic-interactive-danger-default);
+}
+
+/* Interactive states */
+.interactive {
+  cursor: pointer;
+  transition: color var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.interactive:hover {
+  color: var(--ds-semantic-interactive-primary-hover);
+}
+
+.interactive:focus {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* Animation */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

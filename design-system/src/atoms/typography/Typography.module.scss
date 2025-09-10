@@ -1,0 +1,131 @@
+.root {
+  margin: 0;
+  font-family: var(--ds-typography-fontFamily-sans);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+  letter-spacing: var(--ds-typography-letterSpacing-normal);
+}
+
+/* Heading variants */
+.h1 {
+  font-size: var(--ds-typography-sizes-h1);
+  font-weight: var(--ds-typography-fontWeight-bold);
+  line-height: var(--ds-typography-lineHeights-tight);
+  letter-spacing: var(--ds-typography-letterSpacing-tight);
+  margin-bottom: var(--ds-spacing-4);
+}
+
+.h2 {
+  font-size: var(--ds-typography-sizes-h2);
+  font-weight: var(--ds-typography-fontWeight-bold);
+  line-height: var(--ds-typography-lineHeights-tight);
+  letter-spacing: var(--ds-typography-letterSpacing-tight);
+  margin-bottom: var(--ds-spacing-3);
+}
+
+.h3 {
+  font-size: var(--ds-typography-sizes-h3);
+  font-weight: var(--ds-typography-fontWeight-semibold);
+  line-height: var(--ds-typography-lineHeights-tight);
+  letter-spacing: var(--ds-typography-letterSpacing-tight);
+  margin-bottom: var(--ds-spacing-3);
+}
+
+.h4 {
+  font-size: var(--ds-typography-sizes-h4);
+  font-weight: var(--ds-typography-fontWeight-semibold);
+  line-height: var(--ds-typography-lineHeights-snug);
+  letter-spacing: var(--ds-typography-letterSpacing-tight);
+  margin-bottom: var(--ds-spacing-2);
+}
+
+.h5 {
+  font-size: var(--ds-typography-sizes-h5);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  line-height: var(--ds-typography-lineHeights-snug);
+  letter-spacing: var(--ds-typography-letterSpacing-normal);
+  margin-bottom: var(--ds-spacing-2);
+}
+
+.h6 {
+  font-size: var(--ds-typography-sizes-h6);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  line-height: var(--ds-typography-lineHeights-snug);
+  letter-spacing: var(--ds-typography-letterSpacing-normal);
+  margin-bottom: var(--ds-spacing-2);
+}
+
+/* Paragraph variant */
+.p {
+  font-size: var(--ds-typography-sizes-md);
+  font-weight: var(--ds-typography-fontWeight-normal);
+  line-height: var(--ds-typography-lineHeights-normal);
+  letter-spacing: var(--ds-typography-letterSpacing-normal);
+  margin-bottom: var(--ds-spacing-4);
+}
+
+/* Span variant */
+.span {
+  font-size: var(--ds-typography-sizes-md);
+  font-weight: var(--ds-typography-fontWeight-normal);
+  line-height: var(--ds-typography-lineHeights-normal);
+  letter-spacing: var(--ds-typography-letterSpacing-normal);
+}
+
+/* Label variant */
+.label {
+  font-size: var(--ds-typography-sizes-sm);
+  font-weight: var(--ds-typography-fontWeight-semibold);
+  line-height: var(--ds-typography-lineHeights-normal);
+  letter-spacing: var(--ds-typography-letterSpacing-wide);
+  color: var(--ds-semantic-text-secondary);
+  display: block;
+  margin-bottom: var(--ds-spacing-1);
+}
+
+/* Utility classes for common text styles */
+.textSecondary {
+  color: var(--ds-semantic-text-secondary);
+}
+
+.textTertiary {
+  color: var(--ds-semantic-text-tertiary);
+}
+
+.textMuted {
+  color: var(--ds-semantic-text-muted);
+}
+
+.textDisabled {
+  color: var(--ds-semantic-text-disabled);
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textUppercase {
+  text-transform: uppercase;
+}
+
+.textLowercase {
+  text-transform: lowercase;
+}
+
+.textCapitalize {
+  text-transform: capitalize;
+}
+
+.textTruncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
