@@ -51,17 +51,16 @@ export const Checkbox = forwardRef(({
           onChange={handleChange}
           disabled={disabled}
           className={cls.checkboxInput}
-          aria-invalid={error}
+          aria-invalid={!!error}
           aria-describedby={error ? `${rest.id || 'checkbox'}-error` : undefined}
+          aria-checked={indeterminate ? 'mixed' : checked}
+          aria-disabled={disabled}
           {...rest}
         />
         <div 
           className={checkboxClassNames}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
-          role="checkbox"
-          aria-checked={indeterminate ? 'mixed' : checked}
-          aria-disabled={disabled}
         >
           {checked && !indeterminate && (
             <svg className={cls.checkmark} viewBox="0 0 24 24" fill="none">
@@ -92,7 +91,7 @@ export const Checkbox = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { checked: !checked } })}
         >
-          {children}
+          {children != null ? String(children) : children}
         </label>
       )}
       {error && (

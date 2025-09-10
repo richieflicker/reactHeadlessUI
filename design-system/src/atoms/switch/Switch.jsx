@@ -52,15 +52,17 @@ export const Switch = forwardRef(({
           className={cls.switchInput}
           aria-invalid={!!error}
           aria-describedby={error ? `${rest.id || 'switch'}-error` : undefined}
-          role="switch"
-          aria-checked={checked}
-          aria-disabled={disabled}
           {...rest}
         />
         <div 
           className={switchClassNames}
           tabIndex={disabled ? -1 : 0}
           onKeyDown={handleKeyDown}
+          role="switch"
+          aria-checked={checked}
+          aria-disabled={disabled}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${rest.id || 'switch'}-error` : undefined}
         >
           <div className={cls.switchThumb} />
         </div>
@@ -70,7 +72,7 @@ export const Switch = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { checked: !checked } })}
         >
-          {children}
+          {children != null ? String(children) : children}
         </label>
       )}
       {error && (

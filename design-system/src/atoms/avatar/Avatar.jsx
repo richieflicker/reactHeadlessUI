@@ -28,7 +28,7 @@ export function Avatar({
   };
 
   const getInitials = (name) => {
-    if (!name) return '?';
+    if (!name || typeof name !== 'string') return '?';
     return name
       .split(' ')
       .map(word => word.charAt(0))
@@ -38,7 +38,7 @@ export function Avatar({
   };
 
   const shouldShowImage = src && !imageError;
-  const displayFallback = fallback || alt || 'User';
+  const displayFallback = (typeof fallback === 'string' && fallback.trim() ? fallback : null) || alt || 'User';
 
   return (
     <div className={classNames} {...rest}>

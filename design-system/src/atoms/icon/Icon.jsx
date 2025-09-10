@@ -29,6 +29,7 @@ export function Icon({
       fill="currentColor"
       viewBox="0 0 24 24"
       aria-hidden="true"
+      role="img"
       {...rest}
     >
       {children}

@@ -52,8 +52,10 @@ export const Radio = forwardRef(({
           onChange={handleChange}
           disabled={disabled}
           className={cls.radioInput}
-          aria-invalid={error}
+          aria-invalid={!!error}
           aria-describedby={error ? `${rest.id || 'radio'}-error` : undefined}
+          aria-checked={checked}
+          aria-disabled={disabled}
           {...rest}
         />
         <div 
@@ -71,7 +73,7 @@ export const Radio = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { value } })}
         >
-          {children}
+          {children != null ? String(children) : children}
         </label>
       )}
       {error && (

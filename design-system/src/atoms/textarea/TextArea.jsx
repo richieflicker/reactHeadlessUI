@@ -30,6 +30,11 @@ export const TextArea = forwardRef(({
   const currentLength = value ? value.length : 0;
   const isOverLimit = maxLength && currentLength > maxLength;
 
+  const textareaStyle = {
+    resize: disabled ? 'none' : 'vertical',
+    ...rest.style
+  };
+
   return (
     <div className={classNames}>
       <textarea
@@ -41,6 +46,7 @@ export const TextArea = forwardRef(({
         rows={rows}
         maxLength={maxLength}
         className={textareaClassNames}
+        style={textareaStyle}
         aria-invalid={!!error}
         aria-describedby={error ? `${rest.id || 'textarea'}-error` : undefined}
         {...rest}

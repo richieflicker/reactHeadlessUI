@@ -38,7 +38,7 @@ export const Input = forwardRef(({
         placeholder={placeholder}
         disabled={disabled}
         className={inputClassNames}
-        aria-invalid={error}
+        aria-invalid={!!error}
         aria-describedby={error ? `${rest.id || 'input'}-error` : undefined}
         {...rest}
       />

@@ -39,7 +39,7 @@ export function Typography({
       style={style}
       {...rest}
     >
-      {children}
+      {children != null ? String(children) : children}
     </Tag>
   );
 }
