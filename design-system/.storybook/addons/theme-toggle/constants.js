@@ -1,0 +1,1 @@
+export const THEME_TOGGLE_EVENT = 'theme-toggle/change';
