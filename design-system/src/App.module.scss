@@ -6,11 +6,20 @@
   background-color: var(--ds-semantic-background-primary);
   color: var(--ds-semantic-text-primary);
   min-height: 100vh;
+  transition: background-color var(--ds-animation-duration-300) var(--ds-animation-easing-out),
+              color var(--ds-animation-duration-300) var(--ds-animation-easing-out);
 }
 
 .header {
-  text-align: center;
   margin-bottom: var(--ds-spacing-12);
+  
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ds-spacing-4);
+  }
   
   h1 {
     font-size: var(--ds-typography-sizes-4xl);
@@ -22,6 +31,12 @@
   p {
     font-size: var(--ds-typography-sizes-lg);
     color: var(--ds-semantic-text-secondary);
+  }
+  
+  .themeControls {
+    display: flex;
+    align-items: center;
+    gap: var(--ds-spacing-2);
   }
 }
 
@@ -57,5 +72,59 @@
   p {
     margin-top: var(--ds-spacing-4);
     color: var(--ds-semantic-text-secondary);
+  }
+}
+
+.themeDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-8);
+}
+
+.themeInfo {
+  text-align: center;
+  
+  p {
+    font-size: var(--ds-typography-sizes-lg);
+    color: var(--ds-semantic-text-secondary);
+    margin-bottom: var(--ds-spacing-4);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.themeFeatures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--ds-spacing-6);
+}
+
+.feature {
+  padding: var(--ds-spacing-6);
+  background-color: var(--ds-semantic-background-secondary);
+  border: 1px solid var(--ds-semantic-border-primary);
+  border-radius: var(--ds-radius-lg);
+  text-align: center;
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ds-shadow-md);
+    border-color: var(--ds-semantic-border-focus);
+  }
+  
+  h3 {
+    font-size: var(--ds-typography-sizes-lg);
+    font-weight: var(--ds-typography-fontWeight-semibold);
+    color: var(--ds-semantic-text-primary);
+    margin-bottom: var(--ds-spacing-3);
+  }
+  
+  p {
+    font-size: var(--ds-typography-sizes-sm);
+    color: var(--ds-semantic-text-secondary);
+    line-height: var(--ds-typography-lineHeight-relaxed);
   }
 }

@@ -8,3 +8,4 @@ export { default as Radio } from './radio/Radio.jsx';
 export { default as Switch } from './switch/Switch.jsx';
 export { default as Avatar } from './avatar/Avatar.jsx';
 export { default as Badge } from './badge/Badge.jsx';
+export { ThemeToggle } from './theme-toggle/ThemeToggle.jsx';
