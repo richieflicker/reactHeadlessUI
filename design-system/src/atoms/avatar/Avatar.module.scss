@@ -1,0 +1,195 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--ds-semantic-background-tertiary);
+  color: var(--ds-semantic-text-primary);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: opacity var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--ds-typography-fontFamily-sans);
+  user-select: none;
+}
+
+/* Size variants */
+.root.sizeSm {
+  width: 24px;
+  height: 24px;
+  font-size: var(--ds-typography-sizes-xs);
+}
+
+.root.sizeMd {
+  width: 40px;
+  height: 40px;
+  font-size: var(--ds-typography-sizes-sm);
+}
+
+.root.sizeLg {
+  width: 64px;
+  height: 64px;
+  font-size: var(--ds-typography-sizes-lg);
+}
+
+/* Hover effects */
+.root:hover {
+  transform: scale(1.05);
+  transition: transform var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+/* Focus states */
+.root:focus {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+}
+
+/* Interactive states */
+.root.interactive {
+  cursor: pointer;
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.root.interactive:hover {
+  transform: scale(1.05);
+  box-shadow: var(--ds-shadow-md);
+}
+
+.root.interactive:active {
+  transform: scale(0.95);
+}
+
+/* Status indicators */
+.root.statusOnline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  background-color: var(--ds-semantic-interactive-success-default);
+  border: 2px solid var(--ds-semantic-background-primary);
+  border-radius: 50%;
+}
+
+.root.statusAway::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  background-color: var(--ds-semantic-interactive-warning-default);
+  border: 2px solid var(--ds-semantic-background-primary);
+  border-radius: 50%;
+}
+
+.root.statusOffline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  background-color: var(--ds-semantic-text-disabled);
+  border: 2px solid var(--ds-semantic-background-primary);
+  border-radius: 50%;
+}
+
+/* Size-specific status indicators */
+.root.sizeSm.statusOnline::after,
+.root.sizeSm.statusAway::after,
+.root.sizeSm.statusOffline::after {
+  width: 6px;
+  height: 6px;
+  border-width: 1px;
+}
+
+.root.sizeLg.statusOnline::after,
+.root.sizeLg.statusAway::after,
+.root.sizeLg.statusOffline::after {
+  width: 16px;
+  height: 16px;
+  border-width: 3px;
+}
+
+/* Loading state */
+.root.loading {
+  background: linear-gradient(
+    90deg,
+    var(--ds-semantic-background-tertiary) 25%,
+    var(--ds-semantic-background-secondary) 50%,
+    var(--ds-semantic-background-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Error state */
+.root.error {
+  background-color: var(--ds-semantic-interactive-danger-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+/* Disabled state */
+.root.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.root.disabled:hover {
+  transform: none;
+}
+
+/* Grouped avatars */
+.root.grouped {
+  margin-left: -8px;
+  border: 2px solid var(--ds-semantic-background-primary);
+}
+
+.root.grouped:first-child {
+  margin-left: 0;
+}
+
+/* Square variant */
+.root.square {
+  border-radius: var(--ds-radius-md);
+}
+
+.root.square .image {
+  border-radius: var(--ds-radius-md);
+}
+
+/* Rounded variant */
+.root.rounded {
+  border-radius: var(--ds-radius-lg);
+}
+
+.root.rounded .image {
+  border-radius: var(--ds-radius-lg);
+}

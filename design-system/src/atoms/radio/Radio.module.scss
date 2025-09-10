@@ -1,0 +1,185 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-spacing-2);
+  cursor: pointer;
+}
+
+.root.disabled {
+  cursor: not-allowed;
+}
+
+.radioContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+.radio {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ds-semantic-border-primary);
+  border-radius: 50%;
+  background-color: var(--ds-semantic-background-primary);
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.radio:focus {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+}
+
+.radioChecked {
+  border-color: var(--ds-semantic-interactive-primary-default);
+  background-color: var(--ds-semantic-background-primary);
+}
+
+.radioDisabled {
+  background-color: var(--ds-semantic-background-secondary);
+  border-color: var(--ds-semantic-border-secondary);
+  cursor: not-allowed;
+}
+
+.radioError {
+  border-color: var(--ds-semantic-border-error);
+}
+
+.radioError:focus {
+  outline-color: var(--ds-semantic-border-error);
+}
+
+.radioDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--ds-semantic-interactive-primary-default);
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.radioDisabled .radioDot {
+  background-color: var(--ds-semantic-interactive-primary-disabled);
+}
+
+.label {
+  font-size: var(--ds-typography-sizes-md);
+  font-family: var(--ds-typography-fontFamily-sans);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+}
+
+.root.disabled .label {
+  color: var(--ds-semantic-text-disabled);
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--ds-spacing-1);
+  font-size: var(--ds-typography-sizes-sm);
+  color: var(--ds-semantic-interactive-danger-default);
+  line-height: var(--ds-typography-lineHeight-tight);
+}
+
+/* Hover states */
+.root:not(.disabled):hover .radio:not(.radioChecked) {
+  border-color: var(--ds-semantic-interactive-primary-default);
+  background-color: var(--ds-semantic-background-secondary);
+}
+
+.root:not(.disabled):hover .radioChecked {
+  border-color: var(--ds-semantic-interactive-primary-hover);
+}
+
+.root:not(.disabled):hover .radioChecked .radioDot {
+  background-color: var(--ds-semantic-interactive-primary-hover);
+}
+
+/* Active states */
+.root:not(.disabled):active .radio:not(.radioChecked) {
+  background-color: var(--ds-semantic-background-tertiary);
+}
+
+.root:not(.disabled):active .radioChecked {
+  border-color: var(--ds-semantic-interactive-primary-active);
+}
+
+.root:not(.disabled):active .radioChecked .radioDot {
+  background-color: var(--ds-semantic-interactive-primary-active);
+}
+
+/* Size variants */
+.root.sizeSm .radio {
+  width: 16px;
+  height: 16px;
+}
+
+.root.sizeSm .radioDot {
+  width: 8px;
+  height: 8px;
+}
+
+.root.sizeSm .label {
+  font-size: var(--ds-typography-sizes-sm);
+}
+
+.root.sizeLg .radio {
+  width: 24px;
+  height: 24px;
+}
+
+.root.sizeLg .radioDot {
+  width: 12px;
+  height: 12px;
+}
+
+.root.sizeLg .label {
+  font-size: var(--ds-typography-sizes-lg);
+}
+
+/* Error state */
+.root.error .radio {
+  border-color: var(--ds-semantic-border-error);
+}
+
+.root.error .radio:focus {
+  outline-color: var(--ds-semantic-border-error);
+}
+
+/* Disabled state */
+.root.disabled .radio {
+  background-color: var(--ds-semantic-background-secondary);
+  border-color: var(--ds-semantic-border-secondary);
+  cursor: not-allowed;
+}
+
+.root.disabled .radioChecked {
+  border-color: var(--ds-semantic-interactive-primary-disabled);
+}
+
+.root.disabled .radioChecked .radioDot {
+  background-color: var(--ds-semantic-interactive-primary-disabled);
+}

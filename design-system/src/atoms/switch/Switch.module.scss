@@ -1,0 +1,211 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-2);
+  cursor: pointer;
+}
+
+.root.disabled {
+  cursor: not-allowed;
+}
+
+.switchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switchInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+.switch {
+  position: relative;
+  background-color: var(--ds-semantic-background-tertiary);
+  border-radius: var(--ds-radius-pill);
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.switch:focus {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+}
+
+.switchChecked {
+  background-color: var(--ds-semantic-interactive-primary-default);
+}
+
+.switchDisabled {
+  background-color: var(--ds-semantic-background-secondary);
+  cursor: not-allowed;
+}
+
+.switchError {
+  background-color: var(--ds-semantic-interactive-danger-default);
+}
+
+.switchError:focus {
+  outline-color: var(--ds-semantic-border-error);
+}
+
+.switchThumb {
+  background-color: var(--ds-semantic-background-primary);
+  border-radius: 50%;
+  transition: transform var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.switchChecked .switchThumb {
+  transform: translateX(100%);
+}
+
+.switchDisabled .switchThumb {
+  background-color: var(--ds-semantic-background-tertiary);
+  box-shadow: none;
+}
+
+.switchError .switchThumb {
+  background-color: var(--ds-semantic-background-primary);
+}
+
+.label {
+  font-size: var(--ds-typography-sizes-md);
+  font-family: var(--ds-typography-fontFamily-sans);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+}
+
+.root.disabled .label {
+  color: var(--ds-semantic-text-disabled);
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--ds-spacing-1);
+  font-size: var(--ds-typography-sizes-sm);
+  color: var(--ds-semantic-interactive-danger-default);
+  line-height: var(--ds-typography-lineHeight-tight);
+}
+
+/* Size variants */
+.root.sizeSm .switch {
+  width: 32px;
+  height: 18px;
+}
+
+.root.sizeSm .switchThumb {
+  width: 14px;
+  height: 14px;
+}
+
+.root.sizeSm .switchChecked .switchThumb {
+  transform: translateX(14px);
+}
+
+.root.sizeSm .label {
+  font-size: var(--ds-typography-sizes-sm);
+}
+
+.root.sizeMd .switch {
+  width: 40px;
+  height: 20px;
+}
+
+.root.sizeMd .switchThumb {
+  width: 16px;
+  height: 16px;
+}
+
+.root.sizeMd .switchChecked .switchThumb {
+  transform: translateX(20px);
+}
+
+.root.sizeMd .label {
+  font-size: var(--ds-typography-sizes-md);
+}
+
+.root.sizeLg .switch {
+  width: 48px;
+  height: 24px;
+}
+
+.root.sizeLg .switchThumb {
+  width: 20px;
+  height: 20px;
+}
+
+.root.sizeLg .switchChecked .switchThumb {
+  transform: translateX(24px);
+}
+
+.root.sizeLg .label {
+  font-size: var(--ds-typography-sizes-lg);
+}
+
+/* Hover states */
+.root:not(.disabled):hover .switch:not(.switchChecked) {
+  background-color: var(--ds-semantic-background-secondary);
+}
+
+.root:not(.disabled):hover .switchChecked {
+  background-color: var(--ds-semantic-interactive-primary-hover);
+}
+
+.root:not(.disabled):hover .switchThumb {
+  box-shadow: var(--ds-shadow-md);
+}
+
+/* Active states */
+.root:not(.disabled):active .switch:not(.switchChecked) {
+  background-color: var(--ds-semantic-background-primary);
+}
+
+.root:not(.disabled):active .switchChecked {
+  background-color: var(--ds-semantic-interactive-primary-active);
+}
+
+.root:not(.disabled):active .switchThumb {
+  box-shadow: var(--ds-shadow-sm);
+}
+
+/* Error state */
+.root.error .switch {
+  background-color: var(--ds-semantic-interactive-danger-default);
+}
+
+.root.error .switch:focus {
+  outline-color: var(--ds-semantic-border-error);
+}
+
+/* Disabled state */
+.root.disabled .switch {
+  background-color: var(--ds-semantic-background-secondary);
+  cursor: not-allowed;
+}
+
+.root.disabled .switchChecked {
+  background-color: var(--ds-semantic-interactive-primary-disabled);
+}
+
+.root.disabled .switchChecked .switchThumb {
+  background-color: var(--ds-semantic-background-primary);
+}

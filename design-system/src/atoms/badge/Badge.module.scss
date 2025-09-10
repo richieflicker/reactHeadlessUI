@@ -1,0 +1,259 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ds-radius-pill);
+  font-family: var(--ds-typography-fontFamily-sans);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.variant-info {
+  background-color: var(--ds-semantic-interactive-primary-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+.variant-success {
+  background-color: var(--ds-semantic-interactive-success-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+.variant-warning {
+  background-color: var(--ds-semantic-interactive-warning-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+.variant-error {
+  background-color: var(--ds-semantic-interactive-danger-default);
+  color: var(--ds-semantic-text-inverse);
+}
+
+/* Size variants */
+.size-sm {
+  padding: var(--ds-spacing-1) var(--ds-spacing-2);
+  font-size: var(--ds-typography-sizes-xs);
+  min-height: 16px;
+}
+
+.size-md {
+  padding: var(--ds-spacing-1) var(--ds-spacing-3);
+  font-size: var(--ds-typography-sizes-sm);
+  min-height: 20px;
+}
+
+.size-lg {
+  padding: var(--ds-spacing-2) var(--ds-spacing-4);
+  font-size: var(--ds-typography-sizes-md);
+  min-height: 24px;
+}
+
+/* Hover effects */
+.root:hover {
+  transform: translateY(-1px);
+  transition: transform var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+/* Interactive states */
+.root.interactive {
+  cursor: pointer;
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.root.interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.root.interactive:active {
+  transform: translateY(0);
+}
+
+/* Focus states */
+.root:focus {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.root.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.root.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Outline variants */
+.root.outline {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+.root.outline.variant-info {
+  color: var(--ds-semantic-interactive-primary-default);
+  border-color: var(--ds-semantic-interactive-primary-default);
+}
+
+.root.outline.variant-success {
+  color: var(--ds-semantic-interactive-success-default);
+  border-color: var(--ds-semantic-interactive-success-default);
+}
+
+.root.outline.variant-warning {
+  color: var(--ds-semantic-interactive-warning-default);
+  border-color: var(--ds-semantic-interactive-warning-default);
+}
+
+.root.outline.variant-error {
+  color: var(--ds-semantic-interactive-danger-default);
+  border-color: var(--ds-semantic-interactive-danger-default);
+}
+
+/* Soft variants */
+.root.soft {
+  background-color: transparent;
+}
+
+.root.soft.variant-info {
+  background-color: var(--ds-colors-primary-50);
+  color: var(--ds-colors-primary-700);
+}
+
+.root.soft.variant-success {
+  background-color: var(--ds-colors-success-50);
+  color: var(--ds-colors-success-700);
+}
+
+.root.soft.variant-warning {
+  background-color: var(--ds-colors-warning-50);
+  color: var(--ds-colors-warning-700);
+}
+
+.root.soft.variant-error {
+  background-color: var(--ds-colors-danger-50);
+  color: var(--ds-colors-danger-700);
+}
+
+/* Dot variant */
+.root.dot {
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  min-height: 8px;
+}
+
+.root.dot.size-sm {
+  width: 6px;
+  height: 6px;
+  min-height: 6px;
+}
+
+.root.dot.size-lg {
+  width: 10px;
+  height: 10px;
+  min-height: 10px;
+}
+
+/* Pulsing animation */
+.root.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Shake animation */
+.root.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+/* Glow effect */
+.root.glow {
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Rounded corners */
+.root.rounded {
+  border-radius: var(--ds-radius-md);
+}
+
+.root.square {
+  border-radius: var(--ds-radius-sm);
+}
+
+/* Text variants */
+.root.textUppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.root.textLowercase {
+  text-transform: lowercase;
+}
+
+.root.textCapitalize {
+  text-transform: capitalize;
+}
+
+/* Icon support */
+.root .icon {
+  margin-right: var(--ds-spacing-1);
+  flex-shrink: 0;
+}
+
+.root .iconRight {
+  margin-left: var(--ds-spacing-1);
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+/* Close button support */
+.root .closeButton {
+  margin-left: var(--ds-spacing-1);
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  transition: background-color var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.root .closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.root .closeButton:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
