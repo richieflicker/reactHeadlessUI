@@ -13,7 +13,10 @@
     "test": "vitest run --project=unit --reporter=verbose",
     "test:coverage": "vitest run --project=unit --coverage",
     "test:ui": "vitest --ui --environment=jsdom",
-    "test:sb": "vitest --project=storybook --run"
+    "test:sb": "vitest --project=storybook --run",
+    "test:integration": "vitest run --project=unit --reporter=verbose src/test/AtomMoleculeIntegration.test.jsx",
+    "docs": "npm run storybook",
+    "integration:showcase": "npm run dev"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.2.8",

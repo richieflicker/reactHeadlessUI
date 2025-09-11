@@ -5,6 +5,7 @@ import { Button } from './atoms/button/Button'
 import { ThemeToggle } from './atoms/theme-toggle/ThemeToggle'
 import { ThemeShowcase } from './components/ThemeShowcase'
 import { MoleculesShowcase } from './components/MoleculesShowcase'
+import { AtomMoleculeIntegration } from './components/AtomMoleculeIntegration'
 import styles from './App.module.scss'
 
 function App() {
@@ -111,6 +112,11 @@ function App() {
           <section className={styles.section}>
             <h2>Foundation Molecules</h2>
             <MoleculesShowcase />
+          </section>
+
+          <section className={styles.section}>
+            <h2>Atom-Molecule Integration</h2>
+            <AtomMoleculeIntegration />
           </section>
         </main>
         </div>

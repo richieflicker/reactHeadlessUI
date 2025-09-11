@@ -1,41 +1,8 @@
 import React, { useState } from 'react';
 import { FormField } from './FormField';
+import { Input, TextArea, Typography } from '../../atoms';
 
-// Mock input components for the stories
-const Input = ({ id, ...props }) => (
-  <input
-    id={id}
-    type="text"
-    style={{
-      padding: '0.5rem',
-      border: '1px solid var(--ds-semantic-border-primary)',
-      borderRadius: 'var(--ds-radius-sm)',
-      fontSize: 'var(--ds-typography-fontSize-sm)',
-      backgroundColor: 'var(--ds-semantic-background-primary)',
-      color: 'var(--ds-semantic-text-primary)',
-    }}
-    {...props}
-  />
-);
-
-const TextArea = ({ id, ...props }) => (
-  <textarea
-    id={id}
-    rows={3}
-    style={{
-      padding: '0.5rem',
-      border: '1px solid var(--ds-semantic-border-primary)',
-      borderRadius: 'var(--ds-radius-sm)',
-      fontSize: 'var(--ds-typography-fontSize-sm)',
-      backgroundColor: 'var(--ds-semantic-background-primary)',
-      color: 'var(--ds-semantic-text-primary)',
-      resize: 'vertical',
-      minHeight: '2.5rem',
-    }}
-    {...props}
-  />
-);
-
+// Mock Select component for stories
 const Select = ({ id, children, ...props }) => (
   <select
     id={id}
@@ -60,7 +27,50 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'A wrapper component for form inputs that provides label, help text, and error handling with proper accessibility attributes.',
+        component: `
+A wrapper component for form inputs that provides label, help text, and error handling with proper accessibility attributes.
+
+## Features
+- **Atom Integration**: Seamlessly integrates with Input, TextArea, and Typography atoms
+- **Accessibility**: Built-in ARIA support with proper label-input relationships
+- **Error Handling**: Visual error states with proper ARIA attributes
+- **Help Text**: Optional help text for additional guidance
+- **Required Fields**: Visual indicators for required fields
+- **Flexible Input Types**: Supports input, textarea, and custom input components
+
+## Usage
+\`\`\`jsx
+import { FormField } from './molecules';
+import { Input, TextArea } from './atoms';
+
+// With Input atom
+<FormField
+  label="Email"
+  required
+  inputType="input"
+  inputProps={{ type: 'email', placeholder: 'Enter email' }}
+/>
+
+// With TextArea atom
+<FormField
+  label="Message"
+  inputType="textarea"
+  inputProps={{ placeholder: 'Enter message', rows: 4 }}
+/>
+
+// With custom input
+<FormField label="Custom Field">
+  <CustomInput />
+</FormField>
+\`\`\`
+
+## Accessibility
+- Labels are properly associated with inputs via htmlFor
+- Error messages are linked via aria-describedby
+- Required fields are marked with aria-required
+- Error state is indicated with aria-invalid
+- Help text is linked via aria-describedby
+        `,
       },
     },
   },
@@ -68,28 +78,55 @@ export default {
     label: {
       control: 'text',
       description: 'Label text for the form field',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     error: {
       control: 'text',
       description: 'Error message to display',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     help: {
       control: 'text',
       description: 'Help text to display',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     required: {
       control: 'boolean',
       description: 'Whether the field is required',
       defaultValue: false,
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    inputType: {
+      control: 'select',
+      options: ['input', 'textarea'],
+      description: 'Type of input to render',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'input' },
+      },
+    },
+    inputProps: {
+      control: 'object',
+      description: 'Props to pass to the input component',
+      table: {
+        type: { summary: 'object' },
+      },
     },
   },
 };
 
 const Template = (args) => (
   <div style={{ width: '300px' }}>
-    <FormField {...args}>
-      <Input placeholder="Enter text..." />
-    </FormField>
+    <FormField {...args} />
   </div>
 );
 
@@ -98,6 +135,15 @@ Default.args = {
   label: 'Email',
   help: 'We will never share your email',
   required: false,
+  inputType: 'input',
+  inputProps: { placeholder: 'Enter email...' },
+};
+Default.parameters = {
+  docs: {
+    description: {
+      story: 'A basic form field with label and help text. This is the most common usage pattern.',
+    },
+  },
 };
 
 export const WithError = Template.bind({});
@@ -105,6 +151,15 @@ WithError.args = {
   label: 'Email',
   error: 'Please enter a valid email address',
   required: true,
+  inputType: 'input',
+  inputProps: { placeholder: 'Enter email...' },
+};
+WithError.parameters = {
+  docs: {
+    description: {
+      story: 'Form field in error state. The error message is displayed and the input has error styling.',
+    },
+  },
 };
 
 export const Required = Template.bind({});
@@ -112,6 +167,15 @@ Required.args = {
   label: 'Password',
   help: 'Must be at least 8 characters',
   required: true,
+  inputType: 'input',
+  inputProps: { type: 'password', placeholder: 'Enter password...' },
+};
+Required.parameters = {
+  docs: {
+    description: {
+      story: 'Required form field with help text. The asterisk (*) indicates the field is required.',
+    },
+  },
 };
 
 export const WithTextArea = () => (
@@ -120,11 +184,21 @@ export const WithTextArea = () => (
       label="Description"
       help="Provide a detailed description of your project"
       required={true}
-    >
-      <TextArea placeholder="Enter description..." />
-    </FormField>
+      inputType="textarea"
+      inputProps={{ 
+        placeholder: "Enter description...",
+        rows: 4
+      }}
+    />
   </div>
 );
+WithTextArea.parameters = {
+  docs: {
+    description: {
+      story: 'FormField with TextArea atom. Perfect for longer text input like descriptions or comments.',
+    },
+  },
+};
 
 export const WithSelect = () => (
   <div style={{ width: '300px' }}>
