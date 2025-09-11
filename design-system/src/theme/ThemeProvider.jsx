@@ -21,8 +21,20 @@ function injectThemeVariables(theme, isDark = false) {
     });
   };
   
-  // Inject base theme variables
-  setVars(theme);
+  // Inject base theme variables (excluding aliases)
+  const { spacingAliases, typographyAliases, radiusAliases, ...baseTheme } = theme;
+  setVars(baseTheme);
+  
+  // Inject alias variables separately (without Aliases in the path)
+  if (spacingAliases) {
+    setVars(spacingAliases, ['spacing']);
+  }
+  if (typographyAliases) {
+    setVars(typographyAliases, ['typography']);
+  }
+  if (radiusAliases) {
+    setVars(radiusAliases, ['radius']);
+  }
   
   // Override semantic colors based on theme mode
   if (isDark && theme.darkMode?.semantic) {

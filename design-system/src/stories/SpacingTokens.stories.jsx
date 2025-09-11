@@ -118,7 +118,7 @@ export const SpacingAliases = {
               color: 'var(--ds-colors-neutral-400)',
               fontFamily: 'var(--ds-typography-fontFamily-mono)'
             }}>
-              var(--ds-spacingAliases-{key})
+              var(--ds-spacing-{key})
             </div>
           </div>
         ))}

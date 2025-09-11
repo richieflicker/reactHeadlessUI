@@ -318,7 +318,7 @@ export const TypographyScale = {
               color: 'var(--ds-colors-neutral-400)',
               fontFamily: 'var(--ds-typography-fontFamily-mono)'
             }}>
-              var(--ds-typographyAliases-sizes-{key})
+              var(--ds-typography-sizes-{key})
             </div>
           </div>
         ))}

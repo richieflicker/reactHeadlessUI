@@ -132,7 +132,7 @@ export const RadiusAliases = {
               color: 'var(--ds-colors-neutral-400)',
               fontFamily: 'var(--ds-typography-fontFamily-mono)'
             }}>
-              var(--ds-radiusAliases-{key})
+              var(--ds-radius-{key})
             </div>
           </div>
         ))}

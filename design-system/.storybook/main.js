@@ -12,10 +12,10 @@ const config = {
     "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
     "@storybook/addon-vitest",
-    "@storybook/addon-controls",
-    "@storybook/addon-actions",
-    "@storybook/addon-viewport",
-    "@storybook/addon-backgrounds"
+    // "@storybook/addon-controls",
+    // "@storybook/addon-actions",
+    // "@storybook/addon-viewport",
+    // "@storybook/addon-backgrounds"
   ],
   "framework": {
     "name": "@storybook/react-vite",

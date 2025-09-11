@@ -330,7 +330,7 @@ export const UsageExamples = {
 /* SCSS */
 .text {
   font-family: var(--ds-typography-fontFamily-sans);
-  font-size: var(--ds-typographyAliases-sizes-md);
+  font-size: var(--ds-typography-sizes-md);
 }`}
           </div>
         </div>
@@ -357,12 +357,12 @@ export const UsageExamples = {
 .card {
   padding: var(--ds-spacing-4);
   margin: var(--ds-spacing-2);
-  gap: var(--ds-spacingAliases-md);
+  gap: var(--ds-spacing-md);
 }
 
 /* SCSS */
 .container {
-  padding: var(--ds-spacingAliases-lg);
+  padding: var(--ds-spacing-lg);
   margin-bottom: var(--ds-spacing-8);
 }`}
           </div>
@@ -392,7 +392,7 @@ export const UsageExamples = {
 }
 
 .card {
-  border-radius: var(--ds-radiusAliases-lg);
+  border-radius: var(--ds-radius-lg);
 }
 
 .avatar {
