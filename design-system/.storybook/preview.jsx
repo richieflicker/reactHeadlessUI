@@ -75,10 +75,68 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      expanded: true,
+      sort: 'requiredFirst',
+    },
+    docs: {
+      toc: true,
+      source: {
+        type: 'code',
+        state: 'open',
+      },
     },
     a11y: {
-      test: "todo"
-    }
+      config: {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+          },
+        ],
+      },
+    },
+    viewport: {
+      viewports: {
+        mobile: {
+          name: 'Mobile',
+          styles: {
+            width: '375px',
+            height: '667px',
+          },
+        },
+        tablet: {
+          name: 'Tablet',
+          styles: {
+            width: '768px',
+            height: '1024px',
+          },
+        },
+        desktop: {
+          name: 'Desktop',
+          styles: {
+            width: '1024px',
+            height: '768px',
+          },
+        },
+      },
+    },
+    backgrounds: {
+      default: 'light',
+      values: [
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+        {
+          name: 'dark',
+          value: '#1a1a1a',
+        },
+        {
+          name: 'neutral',
+          value: '#f5f5f5',
+        },
+      ],
+    },
   },
   decorators: [
     (Story) => {

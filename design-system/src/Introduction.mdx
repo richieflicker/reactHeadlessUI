@@ -1,0 +1,206 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Design System
+
+Welcome to our comprehensive design system built with React, SCSS, and Storybook. This system provides a robust foundation for building consistent, accessible, and scalable user interfaces.
+
+## 🎯 Overview
+
+Our design system follows the Atomic Design methodology, providing a clear hierarchy of components from basic building blocks (atoms) to complex compositions (molecules). The system is designed to be:
+
+- **Consistent**: All components share the same design tokens and behavior patterns
+- **Accessible**: Built with accessibility in mind, following WCAG guidelines
+- **Themeable**: Supports light and dark themes with automatic system preference detection
+- **Scalable**: Easy to extend and customize for different use cases
+- **Well-documented**: Comprehensive Storybook documentation with live examples
+
+## 🏗️ Architecture
+
+### Component Hierarchy
+
+```
+Atoms (Basic Building Blocks)
+├── Button
+├── Input
+├── Typography
+├── Icon
+├── Badge
+├── Avatar
+├── Checkbox
+├── Radio
+├── Switch
+└── TextArea
+
+Molecules (Composed Components)
+├── FormField (uses Input, TextArea, Typography)
+├── Card (uses Typography, Button, Badge, Avatar, Icon)
+├── Modal (uses Typography, Button)
+├── Tabs (uses Typography, Button)
+├── Accordion (uses Typography, Button)
+└── Select (uses Typography, Input)
+```
+
+### Design Tokens
+
+Our design system is built on a comprehensive set of design tokens that ensure consistency across all components:
+
+- **Colors**: Semantic color system with light/dark theme support
+- **Typography**: Consistent font families, sizes, and weights
+- **Spacing**: Standardized spacing scale for margins and padding
+- **Border Radius**: Consistent corner rounding values
+- **Shadows**: Elevation system for depth and hierarchy
+- **Breakpoints**: Responsive design breakpoints
+
+## 🚀 Getting Started
+
+### Installation
+
+```bash
+npm install
+npm run dev
+```
+
+### Basic Usage
+
+```jsx
+import { 
+  Button, 
+  Input, 
+  FormField, 
+  Card, 
+  Typography 
+} from './src';
+
+function MyComponent() {
+  return (
+    <Card variant="outlined">
+      <Card.Header title="User Profile" />
+      <Card.Body>
+        <FormField
+          label="Name"
+          required
+          inputType="input"
+          inputProps={{ placeholder: 'Enter your name' }}
+        />
+      </Card.Body>
+      <Card.Footer
+        actions={<Button variant="primary">Save</Button>}
+      />
+    </Card>
+  );
+}
+```
+
+## 🎨 Theming
+
+The design system supports both light and dark themes with automatic system preference detection:
+
+```jsx
+import { ThemeProvider, ThemeContextProvider } from './src';
+
+function App() {
+  return (
+    <ThemeContextProvider>
+      <ThemeProvider>
+        <YourApp />
+      </ThemeProvider>
+    </ThemeContextProvider>
+  );
+}
+```
+
+## ♿ Accessibility
+
+All components are built with accessibility in mind:
+
+- **ARIA Support**: Proper ARIA attributes for screen readers
+- **Keyboard Navigation**: Full keyboard support for all interactive components
+- **Focus Management**: Proper focus handling and visual indicators
+- **Color Contrast**: High contrast support for better readability
+- **Screen Reader Support**: Semantic HTML and proper labeling
+
+## 🧪 Testing
+
+The design system includes comprehensive testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Run integration tests
+npm run test:integration
+
+# Run Storybook tests
+npm run test:sb
+```
+
+## 📚 Documentation
+
+Each component includes:
+
+- **Live Examples**: Interactive examples in Storybook
+- **API Documentation**: Complete prop documentation
+- **Usage Guidelines**: Best practices and common patterns
+- **Accessibility Notes**: Specific accessibility considerations
+- **Code Examples**: Copy-paste ready code snippets
+
+## 🔧 Development
+
+### Adding New Components
+
+1. Create component files in the appropriate directory (`atoms/` or `molecules/`)
+2. Add comprehensive Storybook stories
+3. Write tests with good coverage
+4. Update the main export file
+5. Document usage patterns
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests and documentation
+5. Submit a pull request
+
+## 🌟 Features
+
+### Atom-Molecule Integration
+
+Our molecules seamlessly integrate with atoms, providing:
+
+- **Consistent Theming**: All components use the same design tokens
+- **Composable Architecture**: Mix and match atoms to create molecules
+- **Accessibility First**: Built-in ARIA support and keyboard navigation
+- **Responsive Design**: Mobile-first approach with breakpoint tokens
+- **Type Safety**: Full TypeScript support (coming soon)
+
+### Storybook Integration
+
+- **Auto-generated Docs**: Automatic documentation from component props
+- **Interactive Controls**: Live editing of component properties
+- **Accessibility Testing**: Built-in accessibility testing
+- **Visual Testing**: Chromatic integration for visual regression testing
+- **Mobile Testing**: Viewport testing for responsive design
+
+## 📖 Resources
+
+- [Component Library](./?path=/docs/atoms-button--primary)
+- [Design Tokens](./?path=/docs/design-tokens--page)
+- [Integration Guide](./?path=/docs/molecules-formfield--default)
+- [Accessibility Guidelines](./?path=/docs/atoms-button--interactive-example)
+
+## 🤝 Support
+
+For questions or issues:
+- Check the component documentation
+- Review the integration examples
+- Open an issue on GitHub
+
+---
+
+**Built with ❤️ for scalable, accessible, and maintainable user interfaces.**

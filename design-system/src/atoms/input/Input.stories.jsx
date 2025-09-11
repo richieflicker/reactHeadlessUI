@@ -16,28 +16,101 @@ export default {
   argTypes: {
     type: { 
       control: { type: 'select' }, 
-      options: ['text', 'email', 'number', 'password'] 
+      options: ['text', 'email', 'number', 'password'],
+      description: 'HTML input type',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'text' },
+      },
     },
     value: { 
-      control: { type: 'text' } 
+      control: { type: 'text' },
+      description: 'Input value',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     placeholder: { 
-      control: { type: 'text' } 
+      control: { type: 'text' },
+      description: 'Placeholder text',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     disabled: { 
-      control: { type: 'boolean' } 
+      control: { type: 'boolean' },
+      description: 'Whether the input is disabled',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     error: { 
-      control: { type: 'text' } 
-    }
+      control: { type: 'text' },
+      description: 'Error message to display',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    prefix: {
+      control: { type: 'text' },
+      description: 'Content to display before the input',
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    suffix: {
+      control: { type: 'text' },
+      description: 'Content to display after the input',
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Function called when input value changes',
+      table: {
+        type: { summary: 'function' },
+      },
+    },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Input component provides consistent text input styling with prefix/suffix slots and proper states.'
-      }
-    }
-  }
+        component: `
+A versatile input component with consistent styling, prefix/suffix slots, and proper state handling.
+
+## Features
+- **Multiple Types**: Support for text, email, number, password, and other HTML input types
+- **Prefix/Suffix Slots**: Add icons or content before and after the input
+- **Error States**: Visual error indication with proper ARIA attributes
+- **Disabled State**: Proper disabled styling and behavior
+- **Accessibility**: Built-in ARIA support and keyboard navigation
+- **Theme Integration**: Automatically adapts to light/dark themes
+
+## Usage
+\`\`\`jsx
+import { Input } from './atoms';
+
+<Input
+  type="email"
+  placeholder="Enter your email"
+  value={email}
+  onChange={setEmail}
+  prefix={<Icon name="email" />}
+  error={emailError}
+/>
+\`\`\`
+
+## Accessibility
+- Proper focus management
+- ARIA attributes for screen readers
+- Keyboard navigation support
+- Error state indication with aria-invalid
+        `,
+      },
+    },
+  },
 };
 
 export const Default = {
@@ -55,7 +128,14 @@ export const Default = {
         onChange={(e) => setValue(e.target.value)}
       />
     );
-  }
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A basic input field with placeholder text. This is the most common usage pattern.',
+      },
+    },
+  },
 };
 
 export const WithPlaceholder = {
