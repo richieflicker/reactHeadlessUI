@@ -198,7 +198,7 @@
   },
   "typography": {
     "fontFamily": {
-      "sans": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
+      "sans": "'Geologica', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
       "serif": "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
       "mono": "ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
     },

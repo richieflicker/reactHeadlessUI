@@ -119,10 +119,6 @@ function App() {
             <AtomMoleculeIntegration />
           </section>
 
-          <section className={styles.section}>
-            <h2>Alias Variables Test</h2>
-            <AliasTest />
-          </section>
         </main>
         </div>
       </ThemeProvider>

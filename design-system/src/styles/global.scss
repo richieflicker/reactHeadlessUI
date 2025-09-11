@@ -1,0 +1,27 @@
+@import './_font.scss';
+
+/* Global CSS Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--ds-typography-fontFamily-sans);
+  line-height: var(--ds-typography-lineHeight-normal);
+  color: var(--ds-semantic-text-primary);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--ds-semantic-background-primary);
+  transition: background-color var(--ds-animation-duration-200) var(--ds-animation-easing-out),
+              color var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+/* Ensure smooth theme transitions */
+* {
+  transition: background-color var(--ds-animation-duration-200) var(--ds-animation-easing-out),
+              color var(--ds-animation-duration-200) var(--ds-animation-easing-out),
+              border-color var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}

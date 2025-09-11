@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeContextProvider, useTheme } from '../src/theme/ThemeContext.jsx';
 import ThemeProvider from '../src/theme/ThemeProvider.jsx';
+import '../src/styles/global.scss';
 
 // Theme Toggle Component for Storybook
 const StorybookThemeToggle = () => {
