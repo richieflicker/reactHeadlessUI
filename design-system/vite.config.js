@@ -11,6 +11,15 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Enable SCSS processing for tests
+        api: 'modern-compiler',
+        additionalData: `@import "/workspace/design-system/src/theme/_variables.scss";`
+      }
+    }
+  },
   test: {
     projects: [
       {
@@ -18,7 +27,13 @@ export default defineConfig({
           name: 'unit',
           environment: 'jsdom',
           setupFiles: ['src/test/setup.js'],
-          globals: true
+          globals: true,
+          // Configure CSS handling for tests
+          css: {
+            modules: {
+              classNameStrategy: 'stable'
+            }
+          }
         }
       },
       {
