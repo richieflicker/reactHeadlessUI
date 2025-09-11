@@ -1,7 +1,8 @@
 import React from 'react';
+import { Tabs } from './Tabs';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Tabs } from './Tabs';
+import { describe, it, expect, vi } from 'vitest';
 
 const TestTabs = ({ defaultIndex = 0 }) => (
   <Tabs defaultIndex={defaultIndex}>

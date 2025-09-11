@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi } from 'vitest';
 import { Select } from './Select';
 
 const mockOptions = [
@@ -12,7 +13,7 @@ const mockOptions = [
 const TestSelect = (props) => (
   <Select
     options={mockOptions}
-    onChange={jest.fn()}
+    onChange={vi.fn()}
     placeholder="Select an option..."
     {...props}
   />
@@ -61,7 +62,7 @@ describe('Select', () => {
   });
 
   it('selects option when clicked', async () => {
-    const mockOnChange = jest.fn();
+    const mockOnChange = vi.fn();
     const user = userEvent.setup();
     render(<TestSelect onChange={mockOnChange} />);
     
@@ -111,7 +112,7 @@ describe('Select', () => {
   });
 
   it('handles Enter key to select option', async () => {
-    const mockOnChange = jest.fn();
+    const mockOnChange = vi.fn();
     const user = userEvent.setup();
     render(<TestSelect onChange={mockOnChange} />);
     
@@ -242,7 +243,7 @@ describe('Select', () => {
       { label: 'Boolean Option', value: true },
     ];
     
-    const mockOnChange = jest.fn();
+    const mockOnChange = vi.fn();
     render(<TestSelect options={mixedOptions} onChange={mockOnChange} />);
     
     expect(screen.getByRole('button')).toBeInTheDocument();

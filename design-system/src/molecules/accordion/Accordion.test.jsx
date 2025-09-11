@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, it, expect } from 'vitest';
 import { Accordion } from './Accordion';
 
 const TestAccordion = ({ multiple = false }) => (

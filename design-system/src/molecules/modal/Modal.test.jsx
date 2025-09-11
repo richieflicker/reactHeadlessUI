@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi } from 'vitest';
 import { Modal } from './Modal';
 
 // Mock the Button component
-jest.mock('../../atoms/button/Button', () => ({
+vi.mock('../../atoms/button/Button', () => ({
   Button: ({ children, onClick, ...props }) => (
     <button onClick={onClick} {...props}>
       {children}
@@ -26,7 +27,7 @@ const TestModal = ({ isOpen, onClose, backdropClose = true, showClose = true }) 
 );
 
 describe('Modal', () => {
-  const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
 
   beforeEach(() => {
     mockOnClose.mockClear();
@@ -166,7 +167,7 @@ describe('Modal', () => {
 describe('ModalHeader', () => {
   it('renders children', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Modal isOpen={true} onClose={vi.fn()}>
         <Modal.Header>Header Content</Modal.Header>
       </Modal>
     );
@@ -176,7 +177,7 @@ describe('ModalHeader', () => {
 
   it('shows close button by default', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Modal isOpen={true} onClose={vi.fn()}>
         <Modal.Header>Header</Modal.Header>
       </Modal>
     );
@@ -186,7 +187,7 @@ describe('ModalHeader', () => {
 
   it('hides close button when showClose is false', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Modal isOpen={true} onClose={vi.fn()}>
         <Modal.Header showClose={false}>Header</Modal.Header>
       </Modal>
     );
@@ -198,7 +199,7 @@ describe('ModalHeader', () => {
 describe('ModalBody', () => {
   it('renders children', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Modal isOpen={true} onClose={vi.fn()}>
         <Modal.Body>Body Content</Modal.Body>
       </Modal>
     );
@@ -210,7 +211,7 @@ describe('ModalBody', () => {
 describe('ModalFooter', () => {
   it('renders children', () => {
     render(
-      <Modal isOpen={true} onClose={jest.fn()}>
+      <Modal isOpen={true} onClose={vi.fn()}>
         <Modal.Footer>Footer Content</Modal.Footer>
       </Modal>
     );
