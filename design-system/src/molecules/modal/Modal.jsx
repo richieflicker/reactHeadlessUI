@@ -43,9 +43,24 @@ export const Modal = ({
         }
       };
 
+      // Set up focus trap
+      const handleFocusIn = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          // Focus has left the modal, bring it back to the first focusable element
+          const focusableElements = modalRef.current.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+          }
+        }
+      };
+
       document.addEventListener('keydown', handleEscape);
+      document.addEventListener('focusin', handleFocusIn);
       return () => {
         document.removeEventListener('keydown', handleEscape);
+        document.removeEventListener('focusin', handleFocusIn);
         document.body.style.overflow = 'unset';
         
         // Restore focus to the previously focused element
@@ -72,17 +87,31 @@ export const Modal = ({
       if (focusableElements && focusableElements.length > 0) {
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
+        const activeElement = document.activeElement;
 
-        if (event.shiftKey) {
-          if (document.activeElement === firstElement) {
+        // If focus is on the modal container, move to first element
+        if (activeElement === modalRef.current) {
+          if (event.shiftKey) {
             lastElement.focus();
-            event.preventDefault();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
+          } else {
             firstElement.focus();
-            event.preventDefault();
           }
+          event.preventDefault();
+          return;
+        }
+
+        // If focus is on the first element and Shift+Tab, move to last
+        if (activeElement === firstElement && event.shiftKey) {
+          lastElement.focus();
+          event.preventDefault();
+          return;
+        }
+
+        // If focus is on the last element and Tab, move to first
+        if (activeElement === lastElement && !event.shiftKey) {
+          firstElement.focus();
+          event.preventDefault();
+          return;
         }
       }
     }

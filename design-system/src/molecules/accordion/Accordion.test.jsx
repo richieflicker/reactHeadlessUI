@@ -42,7 +42,7 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
+    const header1 = screen.getByText('Header 1').closest('button');
     await user.click(header1);
     
     expect(screen.getByText('Body 1 Content')).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
+    const header1 = screen.getByText('Header 1').closest('button');
     
     // Open item
     await user.click(header1);
@@ -69,8 +69,8 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion multiple={false} />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
     
     // Open first item
     await user.click(header1);
@@ -86,8 +86,8 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion multiple={true} />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
     
     // Open first item
     await user.click(header1);
@@ -103,7 +103,7 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const disabledHeader = screen.getByText('Disabled Header');
+    const disabledHeader = screen.getByText('Disabled Header').closest('button');
     await user.click(disabledHeader);
     
     expect(screen.queryByText('Disabled Body Content')).not.toBeInTheDocument();
@@ -114,8 +114,8 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
     
     // Focus first header
     header1.focus();
@@ -134,18 +134,18 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
     
     // Focus second header
     header2.focus();
     
     // Home should move to first header
-    await user.keyboard('{Home}');
+    fireEvent.keyDown(header2, { key: 'Home' });
     expect(header1).toHaveFocus();
     
     // End should move to last header
-    await user.keyboard('{End}');
+    fireEvent.keyDown(header1, { key: 'End' });
     expect(header2).toHaveFocus();
   });
 
@@ -153,7 +153,7 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
+    const header1 = screen.getByText('Header 1').closest('button');
     header1.focus();
     
     // Enter should toggle the focused item
@@ -170,9 +170,9 @@ describe('Accordion', () => {
   it('has correct ARIA attributes', () => {
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
-    const disabledHeader = screen.getByText('Disabled Header');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
+    const disabledHeader = screen.getByText('Disabled Header').closest('button');
     
     expect(header1).toHaveAttribute('aria-expanded', 'false');
     expect(header2).toHaveAttribute('aria-expanded', 'false');
@@ -183,7 +183,7 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
+    const header1 = screen.getByText('Header 1').closest('button');
     
     expect(header1).toHaveAttribute('aria-expanded', 'false');
     
@@ -195,9 +195,9 @@ describe('Accordion', () => {
     const user = userEvent.setup();
     render(<TestAccordion />);
     
-    const header1 = screen.getByText('Header 1');
-    const header2 = screen.getByText('Header 2');
-    const disabledHeader = screen.getByText('Disabled Header');
+    const header1 = screen.getByText('Header 1').closest('button');
+    const header2 = screen.getByText('Header 2').closest('button');
+    const disabledHeader = screen.getByText('Disabled Header').closest('button');
     
     header1.focus();
     

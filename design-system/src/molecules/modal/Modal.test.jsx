@@ -100,23 +100,24 @@ describe('Modal', () => {
     render(<TestModal isOpen={true} onClose={mockOnClose} />);
     
     const modal = screen.getByRole('dialog');
+    const modalContainer = modal.querySelector('[tabindex="-1"]');
     const focusableElement = screen.getByText('Focusable element');
-    const closeButton = screen.getByText('Close');
+    const closeButton = screen.getByRole('button', { name: 'Close modal' });
     
     // Focus should start on the modal container
-    expect(modal).toHaveFocus();
+    expect(modalContainer).toHaveFocus();
     
-    // Tab should move to first focusable element
-    await user.tab();
-    expect(focusableElement).toHaveFocus();
-    
-    // Tab should move to next focusable element
+    // Tab should move to first focusable element (close button)
     await user.tab();
     expect(closeButton).toHaveFocus();
     
-    // Tab should cycle back to first focusable element
+    // Tab should move to next focusable element
     await user.tab();
     expect(focusableElement).toHaveFocus();
+    
+    // Tab should cycle back to first focusable element
+    await user.tab();
+    expect(closeButton).toHaveFocus();
   });
 
   it('restores focus to previously focused element when closed', async () => {

@@ -71,8 +71,6 @@ export const TabsTab = ({
   };
 
   const handleKeyDown = (event) => {
-    const { onTabChange } = useTabsContext();
-    
     switch (event.key) {
       case 'ArrowLeft':
         event.preventDefault();

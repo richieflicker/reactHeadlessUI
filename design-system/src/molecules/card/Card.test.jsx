@@ -21,7 +21,7 @@ describe('Card', () => {
       </Card>
     );
     
-    expect(container.firstChild).toHaveClass('cardOutlined');
+    expect(container.firstChild.className).toContain('cardOutlined');
   });
 
   it('renders with specified variant', () => {
@@ -31,7 +31,7 @@ describe('Card', () => {
       </Card>
     );
     
-    expect(container.firstChild).toHaveClass('cardShadowed');
+    expect(container.firstChild.className).toContain('cardShadowed');
   });
 
   it('renders with all variants', () => {
@@ -40,21 +40,21 @@ describe('Card', () => {
         <div>Card content</div>
       </Card>
     );
-    expect(container.firstChild).toHaveClass('cardOutlined');
+    expect(container.firstChild.className).toContain('cardOutlined');
     
     rerender(
       <Card variant="shadowed">
         <div>Card content</div>
       </Card>
     );
-    expect(container.firstChild).toHaveClass('cardShadowed');
+    expect(container.firstChild.className).toContain('cardShadowed');
     
     rerender(
       <Card variant="elevated">
         <div>Card content</div>
       </Card>
     );
-    expect(container.firstChild).toHaveClass('cardElevated');
+    expect(container.firstChild.className).toContain('cardElevated');
   });
 
   it('applies custom className', () => {
@@ -100,7 +100,7 @@ describe('CardHeader', () => {
       </Card>
     );
     
-    const header = container.querySelector('.cardHeader');
+    const header = container.querySelector('[class*="cardHeader"]');
     expect(header).toHaveClass('custom-header');
   });
 
@@ -113,7 +113,7 @@ describe('CardHeader', () => {
       </Card>
     );
     
-    const header = container.querySelector('.cardHeader');
+    const header = container.querySelector('[class*="cardHeader"]');
     expect(header).toHaveAttribute('data-testid', 'header');
   });
 });
@@ -140,7 +140,7 @@ describe('CardBody', () => {
       </Card>
     );
     
-    const body = container.querySelector('.cardBody');
+    const body = container.querySelector('[class*="cardBody"]');
     expect(body).toHaveClass('custom-body');
   });
 
@@ -153,7 +153,7 @@ describe('CardBody', () => {
       </Card>
     );
     
-    const body = container.querySelector('.cardBody');
+    const body = container.querySelector('[class*="cardBody"]');
     expect(body).toHaveAttribute('data-testid', 'body');
   });
 });
@@ -180,7 +180,7 @@ describe('CardFooter', () => {
       </Card>
     );
     
-    const footer = container.querySelector('.cardFooter');
+    const footer = container.querySelector('[class*="cardFooter"]');
     expect(footer).toHaveClass('custom-footer');
   });
 
@@ -193,7 +193,7 @@ describe('CardFooter', () => {
       </Card>
     );
     
-    const footer = container.querySelector('.cardFooter');
+    const footer = container.querySelector('[class*="cardFooter"]');
     expect(footer).toHaveAttribute('data-testid', 'footer');
   });
 });

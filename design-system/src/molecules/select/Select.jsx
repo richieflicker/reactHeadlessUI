@@ -46,40 +46,9 @@ export const Select = ({
   }, [value, options]);
 
   const handleKeyDown = (event) => {
+    // Let downshift handle most keyboard navigation
+    // We only need to handle custom cases
     switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        if (!isOpen) {
-          // Open the dropdown
-          getToggleButtonProps().onClick();
-        } else {
-          // Move to next item
-          const nextIndex = highlightedIndex < options.length - 1 ? highlightedIndex + 1 : 0;
-          setHighlightedIndex(nextIndex);
-        }
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        if (isOpen) {
-          // Move to previous item
-          const prevIndex = highlightedIndex > 0 ? highlightedIndex - 1 : options.length - 1;
-          setHighlightedIndex(prevIndex);
-        }
-        break;
-      case 'Enter':
-        event.preventDefault();
-        if (isOpen && highlightedIndex >= 0) {
-          selectItem(options[highlightedIndex]);
-        } else if (!isOpen) {
-          getToggleButtonProps().onClick();
-        }
-        break;
-      case 'Escape':
-        event.preventDefault();
-        if (isOpen) {
-          getToggleButtonProps().onClick();
-        }
-        break;
       case 'Home':
         event.preventDefault();
         if (isOpen) {
@@ -93,13 +62,8 @@ export const Select = ({
         }
         break;
       default:
+        // Let downshift handle other keys
         break;
-    }
-  };
-
-  const handleToggleClick = () => {
-    if (!disabled) {
-      getToggleButtonProps().onClick();
     }
   };
 
@@ -112,8 +76,6 @@ export const Select = ({
       <button
         type="button"
         className={`${styles.selectButton} ${isOpen ? styles.selectButtonOpen : ''} ${disabled ? styles.selectButtonDisabled : ''}`}
-        onClick={handleToggleClick}
-        onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
