@@ -17,7 +17,12 @@ export function Badge({
   ].filter(Boolean).join(' ');
 
   return (
-    <span className={classNames} {...rest}>
+    <span 
+      className={classNames} 
+      role="status"
+      aria-live="polite"
+      {...rest}
+    >
       {children}
     </span>
   );

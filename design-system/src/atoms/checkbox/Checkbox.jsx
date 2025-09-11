@@ -37,7 +37,24 @@ export const Checkbox = forwardRef(({
   const handleKeyDown = (event) => {
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      handleChange(event);
+      const syntheticEvent = {
+        target: { checked: !checked },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
+    }
+  };
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      const syntheticEvent = {
+        target: { checked: !checked },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
     }
   };
 
@@ -49,6 +66,7 @@ export const Checkbox = forwardRef(({
           type="checkbox"
           checked={checked}
           onChange={handleChange}
+          onKeyDown={handleInputKeyDown}
           disabled={disabled}
           className={cls.checkboxInput}
           aria-invalid={!!error}
@@ -91,7 +109,7 @@ export const Checkbox = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { checked: !checked } })}
         >
-          {children != null ? String(children) : children}
+          {children}
         </label>
       )}
       {error && (

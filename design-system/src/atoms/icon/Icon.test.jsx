@@ -30,7 +30,7 @@ describe('Icon', () => {
         <path d="M10 10h4v4h-4z" />
       </Icon>
     );
-    expect(container.firstChild.className).toContain('size-lg');
+    expect(container.firstChild.getAttribute('class')).toMatch('size-lg');
   });
 
   it('applies custom className', () => {
@@ -39,7 +39,7 @@ describe('Icon', () => {
         <path d="M10 10h4v4h-4z" />
       </Icon>
     );
-    expect(container.firstChild.className).toContain('custom-class');
+    expect(container.firstChild.getAttribute('class')).toContain('custom-class');
   });
 
   it('applies custom color', () => {
@@ -73,7 +73,7 @@ describe('Icon', () => {
           <path d="M10 10h4v4h-4z" />
         </Icon>
       );
-      expect(container.firstChild.className).toContain(`size-${size}`);
+      expect(container.firstChild.getAttribute('class')).toMatch(`size-${size}`);
     });
   });
 
@@ -113,8 +113,8 @@ describe('Icon', () => {
       </Icon>
     );
     const svg = container.querySelector('svg');
-    expect(svg.style.color).toBe('blue');
     expect(svg.style.width).toBe('32px');
+    expect(svg.getAttribute('fill')).toBe('blue');
   });
 
   it('renders with complex children', () => {

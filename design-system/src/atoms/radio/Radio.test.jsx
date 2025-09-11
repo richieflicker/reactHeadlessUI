@@ -252,8 +252,9 @@ describe('Radio', () => {
   });
 
   it('handles boolean children', () => {
-    render(<Radio name="test" value="test" onChange={() => {}}>{true}</Radio>);
-    expect(screen.getByText('true')).toBeInTheDocument();
+    const { container } = render(<Radio name="test" value="test" onChange={() => {}}>{true}</Radio>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles numeric children', () => {

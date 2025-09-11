@@ -11,6 +11,7 @@
     "storybook": "storybook dev -p 6006 --quiet",
     "build-storybook": "storybook build",
     "test": "vitest run --project=unit --reporter=verbose",
+    "test:coverage": "vitest run --project=unit --coverage",
     "test:ui": "vitest --ui --environment=jsdom",
     "test:sb": "vitest --project=storybook --run"
   },

@@ -36,7 +36,24 @@ export const Radio = forwardRef(({
   const handleKeyDown = (event) => {
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      handleChange(event);
+      const syntheticEvent = {
+        target: { value },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
+    }
+  };
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      const syntheticEvent = {
+        target: { value },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
     }
   };
 
@@ -46,10 +63,11 @@ export const Radio = forwardRef(({
         <input
           ref={ref}
           type="radio"
-          name={name}
-          value={value}
+          name={name || ''}
+          value={value || ''}
           checked={checked}
           onChange={handleChange}
+          onKeyDown={handleInputKeyDown}
           disabled={disabled}
           className={cls.radioInput}
           aria-invalid={!!error}
@@ -73,7 +91,7 @@ export const Radio = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { value } })}
         >
-          {children != null ? String(children) : children}
+          {children}
         </label>
       )}
       {error && (
@@ -89,8 +107,8 @@ Radio.displayName = 'Radio';
 
 Radio.propTypes = {
   checked: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node,
   disabled: PropTypes.bool,

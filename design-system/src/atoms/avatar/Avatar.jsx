@@ -8,6 +8,8 @@ export function Avatar({
   size = 'md', 
   fallback,
   className,
+  onLoad,
+  onError,
   ...rest 
 }) {
   const [imageError, setImageError] = useState(false);
@@ -19,12 +21,14 @@ export function Avatar({
     className
   ].filter(Boolean).join(' ');
 
-  const handleImageError = () => {
+  const handleImageError = (event) => {
     setImageError(true);
+    if (onError) onError(event);
   };
 
-  const handleImageLoad = () => {
+  const handleImageLoad = (event) => {
     setImageLoaded(true);
+    if (onLoad) onLoad(event);
   };
 
   const getInitials = (name) => {
@@ -39,13 +43,14 @@ export function Avatar({
 
   const shouldShowImage = src && !imageError;
   const displayFallback = (typeof fallback === 'string' && fallback.trim() ? fallback : null) || alt || '?';
+  const imageAlt = (alt && alt.trim()) || 'Avatar';
 
   return (
     <div className={classNames} {...rest}>
       {shouldShowImage ? (
         <img
           src={src}
-          alt={alt || 'Avatar'}
+          alt={imageAlt}
           className={cls.image}
           onError={handleImageError}
           onLoad={handleImageLoad}
@@ -65,7 +70,9 @@ Avatar.propTypes = {
   alt: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   fallback: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onLoad: PropTypes.func,
+  onError: PropTypes.func
 };
 
 export default Avatar;

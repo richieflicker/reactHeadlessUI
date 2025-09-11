@@ -117,8 +117,9 @@ describe('Typography', () => {
   });
 
   it('handles boolean children', () => {
-    render(<Typography>{true}</Typography>);
-    expect(screen.getByText('true')).toBeInTheDocument();
+    const { container } = render(<Typography>{true}</Typography>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles null children', () => {

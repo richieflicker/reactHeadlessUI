@@ -10,6 +10,9 @@ export const Switch = forwardRef(({
   error = false,
   size = 'md',
   className,
+  onFocus,
+  onBlur,
+  onKeyDown,
   ...rest 
 }, ref) => {
   const classNames = [
@@ -36,8 +39,35 @@ export const Switch = forwardRef(({
   const handleKeyDown = (event) => {
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      handleChange(event);
+      const syntheticEvent = {
+        target: { checked: !checked },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
     }
+  };
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      const syntheticEvent = {
+        target: { checked: !checked },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      };
+      handleChange(syntheticEvent);
+    }
+  };
+
+  const handleClick = () => {
+    if (disabled) return;
+    const syntheticEvent = {
+      target: { checked: !checked },
+      preventDefault: () => {},
+      stopPropagation: () => {}
+    };
+    handleChange(syntheticEvent);
   };
 
   return (
@@ -48,6 +78,7 @@ export const Switch = forwardRef(({
           type="checkbox"
           checked={checked}
           onChange={handleChange}
+          onKeyDown={handleInputKeyDown}
           disabled={disabled}
           className={cls.switchInput}
           aria-invalid={!!error}
@@ -57,7 +88,13 @@ export const Switch = forwardRef(({
         <div 
           className={switchClassNames}
           tabIndex={disabled ? -1 : 0}
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => {
+            handleKeyDown(e);
+            if (onKeyDown) onKeyDown(e);
+          }}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onClick={handleClick}
           role="switch"
           aria-checked={checked}
           aria-disabled={disabled}
@@ -72,7 +109,7 @@ export const Switch = forwardRef(({
           className={cls.label}
           onClick={() => !disabled && handleChange({ target: { checked: !checked } })}
         >
-          {children != null ? String(children) : children}
+          {children}
         </label>
       )}
       {error && (
@@ -93,7 +130,10 @@ Switch.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  className: PropTypes.string
+  className: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onKeyDown: PropTypes.func
 };
 
 export default Switch;
