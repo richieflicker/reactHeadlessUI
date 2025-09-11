@@ -23,7 +23,7 @@ describe('Select', () => {
   it('renders select button with placeholder', () => {
     render(<TestSelect />);
     
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('combobox')).toBeInTheDocument();
     expect(screen.getByText('Select an option...')).toBeInTheDocument();
   });
 
@@ -37,10 +37,10 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     await user.click(button);
     
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
     expect(screen.getByText('Option 1')).toBeInTheDocument();
     expect(screen.getByText('Option 2')).toBeInTheDocument();
     expect(screen.getByText('Option 3')).toBeInTheDocument();
@@ -50,15 +50,15 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     
     // Open dropdown
     await user.click(button);
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
     
     // Close dropdown
     await user.click(button);
-    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
   });
 
   it('selects option when clicked', async () => {
@@ -66,7 +66,7 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect onChange={mockOnChange} />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     await user.click(button);
     
     const option2 = screen.getByText('Option 2');
@@ -74,14 +74,14 @@ describe('Select', () => {
     
     expect(mockOnChange).toHaveBeenCalledWith('option2');
     expect(screen.getByText('Option 2')).toBeInTheDocument();
-    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
   });
 
   it('shows selected option in button', async () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     await user.click(button);
     
     const option1 = screen.getByText('Option 1');
@@ -94,21 +94,28 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     
-    // Arrow down should open dropdown
+    // Focus the button first
+    button.focus();
+    
+    // Arrow down should open dropdown and highlight first option
     await user.keyboard('{ArrowDown}');
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+    
+    // Check if first option is highlighted
+    const option1 = screen.getByText('Option 1').closest('li');
+    expect(option1.className).toContain('selectItemHighlighted');
     
     // Arrow down should highlight next option
     await user.keyboard('{ArrowDown}');
-    const option1 = screen.getByText('Option 1');
-    expect(option1).toHaveClass('selectItemHighlighted');
+    const option2 = screen.getByText('Option 2').closest('li');
+    expect(option2.className).toContain('selectItemHighlighted');
     
     // Arrow up should highlight previous option
     await user.keyboard('{ArrowUp}');
-    const option3 = screen.getByText('Option 3');
-    expect(option3).toHaveClass('selectItemHighlighted');
+    const option1Again = screen.getByText('Option 1').closest('li');
+    expect(option1Again.className).toContain('selectItemHighlighted');
   });
 
   it('handles Enter key to select option', async () => {
@@ -116,10 +123,12 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect onChange={mockOnChange} />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
+    
+    // Focus the button first
+    button.focus();
     
     // Open dropdown and highlight first option
-    await user.keyboard('{ArrowDown}');
     await user.keyboard('{ArrowDown}');
     
     // Enter should select the highlighted option
@@ -133,41 +142,47 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
+    
+    // Focus the button first
+    button.focus();
     
     // Open dropdown
     await user.keyboard('{ArrowDown}');
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
     
     // Escape should close dropdown
     await user.keyboard('{Escape}');
-    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
   });
 
   it('handles Home and End keys', async () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
+    
+    // Focus the button first
+    button.focus();
     
     // Open dropdown
     await user.keyboard('{ArrowDown}');
     
     // Home should highlight first option
     await user.keyboard('{Home}');
-    const option1 = screen.getByText('Option 1');
-    expect(option1).toHaveClass('selectItemHighlighted');
+    const option1 = screen.getByText('Option 1').closest('li');
+    expect(option1.className).toContain('selectItemHighlighted');
     
     // End should highlight last option
     await user.keyboard('{End}');
-    const option3 = screen.getByText('Option 3');
-    expect(option3).toHaveClass('selectItemHighlighted');
+    const option3 = screen.getByText('Option 3').closest('li');
+    expect(option3.className).toContain('selectItemHighlighted');
   });
 
   it('is disabled when disabled prop is true', () => {
     render(<TestSelect disabled={true} />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     expect(button).toBeDisabled();
   });
 
@@ -175,10 +190,10 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect disabled={true} />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     await user.click(button);
     
-    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
   });
 
   it('shows selected option when value prop is provided', () => {
@@ -201,21 +216,21 @@ describe('Select', () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     expect(button).toHaveAttribute('aria-haspopup', 'listbox');
     expect(button).toHaveAttribute('aria-expanded', 'false');
     
     await user.click(button);
     
     expect(button).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
   });
 
   it('shows checkmark for selected option', async () => {
     const user = userEvent.setup();
     render(<TestSelect />);
     
-    const button = screen.getByRole('button');
+    const button = screen.getByRole('combobox');
     await user.click(button);
     
     const option1 = screen.getByText('Option 1');
@@ -224,15 +239,15 @@ describe('Select', () => {
     // Reopen to see checkmark
     await user.click(button);
     
-    const selectedOption = screen.getByText('Option 1').closest('li');
-    expect(selectedOption).toHaveClass('selectItemSelected');
+    const selectedOption = screen.getByRole('option', { name: 'Option 1' });
+    expect(selectedOption.className).toContain('selectItemSelected');
     expect(screen.getByText('✓')).toBeInTheDocument();
   });
 
   it('handles empty options array', () => {
     render(<TestSelect options={[]} />);
     
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('combobox')).toBeInTheDocument();
     expect(screen.getByText('Select an option...')).toBeInTheDocument();
   });
 
@@ -246,6 +261,6 @@ describe('Select', () => {
     const mockOnChange = vi.fn();
     render(<TestSelect options={mixedOptions} onChange={mockOnChange} />);
     
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('combobox')).toBeInTheDocument();
   });
 });

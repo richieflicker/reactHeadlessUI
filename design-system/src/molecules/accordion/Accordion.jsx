@@ -89,13 +89,11 @@ export const AccordionHeader = ({
   };
 
   const handleKeyDown = (event) => {
-    const { toggleItem } = useAccordionContext();
-    
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
         // Focus next accordion header
-        const nextHeader = event.target.parentElement?.nextElementSibling?.querySelector('[role="button"]');
+        const nextHeader = event.target.parentElement?.nextElementSibling?.querySelector('[role="button"]:not([disabled])');
         if (nextHeader) {
           nextHeader.focus();
         }
@@ -103,23 +101,32 @@ export const AccordionHeader = ({
       case 'ArrowUp':
         event.preventDefault();
         // Focus previous accordion header
-        const prevHeader = event.target.parentElement?.previousElementSibling?.querySelector('[role="button"]');
+        const prevHeader = event.target.parentElement?.previousElementSibling?.querySelector('[role="button"]:not([disabled])');
         if (prevHeader) {
           prevHeader.focus();
         }
         break;
       case 'Home':
         event.preventDefault();
-        // Focus first accordion header
-        const firstHeader = event.target.closest('.accordion')?.querySelector('[role="button"]');
+        // Focus first accordion header - find the root accordion container
+        let accordionContainer = event.target;
+        while (accordionContainer && (!accordionContainer.className?.includes('accordion') || accordionContainer?.tagName === 'BUTTON' || accordionContainer?.className?.includes('accordionItem'))) {
+          accordionContainer = accordionContainer.parentElement;
+        }
+        const allHeaders = accordionContainer?.querySelectorAll('button[role="button"]:not([disabled])');
+        const firstHeader = allHeaders?.[0];
         if (firstHeader) {
           firstHeader.focus();
         }
         break;
       case 'End':
         event.preventDefault();
-        // Focus last accordion header
-        const headers = event.target.closest('.accordion')?.querySelectorAll('[role="button"]');
+        // Focus last accordion header - find the root accordion container
+        let accordionContainer2 = event.target;
+        while (accordionContainer2 && (!accordionContainer2.className?.includes('accordion') || accordionContainer2?.tagName === 'BUTTON' || accordionContainer2?.className?.includes('accordionItem'))) {
+          accordionContainer2 = accordionContainer2.parentElement;
+        }
+        const headers = accordionContainer2?.querySelectorAll('button[role="button"]:not([disabled])');
         if (headers && headers.length > 0) {
           headers[headers.length - 1].focus();
         }
@@ -141,7 +148,7 @@ export const AccordionHeader = ({
       type="button"
       role="button"
       tabIndex={0}
-      aria-expanded={isOpen}
+      aria-expanded={isOpen.toString()}
       aria-disabled={disabled}
       disabled={disabled}
       className={`${styles.accordionHeader} ${isOpen ? styles.accordionHeaderOpen : ''} ${disabled ? styles.accordionHeaderDisabled : ''} ${className}`}
