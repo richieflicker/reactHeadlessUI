@@ -273,8 +273,9 @@ describe('Checkbox', () => {
   });
 
   it('handles boolean children', () => {
-    render(<Checkbox onChange={() => {}}>{true}</Checkbox>);
-    expect(screen.getByText('true')).toBeInTheDocument();
+    const { container } = render(<Checkbox onChange={() => {}}>{true}</Checkbox>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles numeric children', () => {

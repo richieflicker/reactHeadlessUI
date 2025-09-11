@@ -74,23 +74,27 @@ describe('Badge', () => {
   });
 
   it('handles empty children', () => {
-    render(<Badge></Badge>);
-    expect(screen.getByText('')).toBeInTheDocument();
+    const { container } = render(<Badge></Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles null children', () => {
-    render(<Badge>{null}</Badge>);
-    expect(screen.getByText('')).toBeInTheDocument();
+    const { container } = render(<Badge>{null}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles undefined children', () => {
-    render(<Badge>{undefined}</Badge>);
-    expect(screen.getByText('')).toBeInTheDocument();
+    const { container } = render(<Badge>{undefined}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles boolean children', () => {
-    render(<Badge>{true}</Badge>);
-    expect(screen.getByText('true')).toBeInTheDocument();
+    const { container } = render(<Badge>{true}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles numeric children', () => {
@@ -104,13 +108,15 @@ describe('Badge', () => {
   });
 
   it('handles object children', () => {
-    render(<Badge>{{}}</Badge>);
-    expect(screen.getByText('[object Object]')).toBeInTheDocument();
+    expect(() => {
+      render(<Badge>{{}}</Badge>);
+    }).toThrow('Objects are not valid as a React child');
   });
 
   it('handles function children', () => {
-    render(<Badge>{() => 'Function'}</Badge>);
-    expect(screen.getByText('Function')).toBeInTheDocument();
+    const { container } = render(<Badge>{() => 'Function'}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles zero children', () => {
@@ -119,8 +125,9 @@ describe('Badge', () => {
   });
 
   it('handles false children', () => {
-    render(<Badge>{false}</Badge>);
-    expect(screen.getByText('false')).toBeInTheDocument();
+    const { container } = render(<Badge>{false}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles NaN children', () => {
@@ -139,23 +146,27 @@ describe('Badge', () => {
   });
 
   it('handles empty string children', () => {
-    render(<Badge>{''}</Badge>);
-    expect(screen.getByText('')).toBeInTheDocument();
+    const { container } = render(<Badge>{''}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles whitespace children', () => {
-    render(<Badge>{'   '}</Badge>);
-    expect(screen.getByText('   ')).toBeInTheDocument();
+    const { container } = render(<Badge>{'   '}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('   ');
   });
 
   it('handles newline children', () => {
-    render(<Badge>{'\n'}</Badge>);
-    expect(screen.getByText('\n')).toBeInTheDocument();
+    const { container } = render(<Badge>{'\n'}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('\n');
   });
 
   it('handles tab children', () => {
-    render(<Badge>{'\t'}</Badge>);
-    expect(screen.getByText('\t')).toBeInTheDocument();
+    const { container } = render(<Badge>{'\t'}</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('\t');
   });
 
   it('handles special characters children', () => {

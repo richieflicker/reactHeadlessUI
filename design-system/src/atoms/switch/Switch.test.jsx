@@ -257,8 +257,9 @@ describe('Switch', () => {
   });
 
   it('handles boolean children', () => {
-    render(<Switch onChange={() => {}}>{true}</Switch>);
-    expect(screen.getByText('true')).toBeInTheDocument();
+    const { container } = render(<Switch onChange={() => {}}>{true}</Switch>);
+    expect(container.firstChild).toBeInTheDocument();
+    expect(container.firstChild.textContent).toBe('');
   });
 
   it('handles numeric children', () => {

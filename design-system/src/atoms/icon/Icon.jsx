@@ -26,7 +26,7 @@ export function Icon({
     <svg
       className={classNames}
       style={style}
-      fill="currentColor"
+      fill={color || 'currentColor'}
       viewBox="0 0 24 24"
       aria-hidden="true"
       role="img"
@@ -38,7 +38,7 @@ export function Icon({
 }
 
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   color: PropTypes.string,
   children: PropTypes.node,

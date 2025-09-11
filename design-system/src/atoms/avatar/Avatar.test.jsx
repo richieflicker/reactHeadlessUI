@@ -18,7 +18,8 @@ describe('Avatar', () => {
 
   it('renders fallback when image fails to load', () => {
     render(<Avatar src="https://invalid-url.com/image.jpg" fallback="John Doe" />);
-    // The image will fail to load and trigger the fallback
+    const image = screen.getByAltText('Avatar');
+    fireEvent.error(image);
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
@@ -95,7 +96,7 @@ describe('Avatar', () => {
         onLoad={onLoad}
       />
     );
-    const image = screen.getByAltText('User');
+    const image = screen.getByAltText('Avatar');
     fireEvent.load(image);
     expect(onLoad).toHaveBeenCalledTimes(1);
   });
@@ -109,14 +110,14 @@ describe('Avatar', () => {
         onError={onError}
       />
     );
-    const image = screen.getByAltText('User');
+    const image = screen.getByAltText('Avatar');
     fireEvent.error(image);
     expect(onError).toHaveBeenCalledTimes(1);
   });
 
   it('shows fallback when image errors', () => {
     render(<Avatar src="https://invalid-url.com/image.jpg" fallback="John Doe" />);
-    const image = screen.getByAltText('User');
+    const image = screen.getByAltText('Avatar');
     fireEvent.error(image);
     expect(screen.getByText('JD')).toBeInTheDocument();
   });

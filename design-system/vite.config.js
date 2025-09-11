@@ -18,7 +18,30 @@ export default defineConfig({
           name: 'unit',
           environment: 'jsdom',
           setupFiles: ['src/test/setup.js'],
-          globals: true
+          globals: true,
+          coverage: {
+            provider: 'v8',
+            reporter: ['text', 'json', 'html'],
+            reportsDirectory: './coverage',
+            include: ['src/**/*.{js,jsx}'],
+            exclude: [
+              'src/**/*.stories.{js,jsx}',
+              'src/**/*.test.{js,jsx}',
+              'src/test/**',
+              'src/stories/**',
+              'src/main.jsx',
+              'src/App.jsx',
+              'src/index.js'
+            ],
+            thresholds: {
+              global: {
+                branches: 80,
+                functions: 80,
+                lines: 80,
+                statements: 80
+              }
+            }
+          }
         }
       },
       {
