@@ -1,0 +1,237 @@
+@import '../../theme/theme.scss';
+
+.selectContainer {
+  position: relative;
+  width: 100%;
+  max-width: 20rem; // 320px
+}
+
+.selectButton {
+  width: 100%;
+  padding: var(--ds-spacing-3) var(--ds-spacing-4);
+  background-color: var(--ds-semantic-background-primary);
+  border: 1px solid var(--ds-semantic-border-primary);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--ds-typography-fontSize-sm);
+  color: var(--ds-semantic-text-primary);
+  transition: all var(--ds-animation-duration-150) var(--ds-animation-easing-out);
+  text-align: left;
+  
+  &:hover:not(:disabled) {
+    border-color: var(--ds-semantic-border-focus);
+    background-color: var(--ds-semantic-background-secondary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-semantic-border-focus);
+    outline-offset: 2px;
+    border-color: var(--ds-semantic-border-focus);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: var(--ds-semantic-background-tertiary);
+  }
+}
+
+.selectButtonOpen {
+  border-color: var(--ds-semantic-border-focus);
+  background-color: var(--ds-semantic-background-secondary);
+}
+
+.selectButtonDisabled {
+  background-color: var(--ds-semantic-background-secondary);
+  border-color: var(--ds-semantic-border-secondary);
+  color: var(--ds-semantic-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.selectButtonText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.selectIcon {
+  font-size: var(--ds-typography-fontSize-xs);
+  color: var(--ds-semantic-text-secondary);
+  transition: transform var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  margin-left: var(--ds-spacing-2);
+  flex-shrink: 0;
+}
+
+.selectIconOpen {
+  transform: rotate(180deg);
+}
+
+.selectMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--ds-semantic-background-primary);
+  border: 1px solid var(--ds-semantic-border-primary);
+  border-radius: var(--ds-radius-sm);
+  box-shadow: var(--ds-shadow-lg);
+  z-index: var(--ds-zIndex-popover);
+  max-height: 12rem; // 192px
+  overflow-y: auto;
+  margin-top: var(--ds-spacing-1);
+  padding: var(--ds-spacing-1);
+  list-style: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  pointer-events: none;
+  
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--ds-semantic-background-secondary);
+    border-radius: var(--ds-radius-sm);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--ds-semantic-border-primary);
+    border-radius: var(--ds-radius-sm);
+    
+    &:hover {
+      background: var(--ds-semantic-text-tertiary);
+    }
+  }
+}
+
+.selectMenuOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.selectItem {
+  padding: var(--ds-spacing-2) var(--ds-spacing-3);
+  cursor: pointer;
+  border-radius: var(--ds-radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--ds-typography-fontSize-sm);
+  color: var(--ds-semantic-text-primary);
+  transition: all var(--ds-animation-duration-100) var(--ds-animation-easing-out);
+  position: relative;
+  
+  &:hover {
+    background-color: var(--ds-semantic-background-secondary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-semantic-border-focus);
+    outline-offset: -2px;
+  }
+}
+
+.selectItemHighlighted {
+  background-color: var(--ds-semantic-background-secondary);
+}
+
+.selectItemSelected {
+  background-color: var(--ds-semantic-background-tertiary);
+  font-weight: var(--ds-typography-fontWeight-medium);
+}
+
+.selectItemText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectItemCheck {
+  font-size: var(--ds-typography-fontSize-xs);
+  color: var(--ds-semantic-text-primary);
+  margin-left: var(--ds-spacing-2);
+  flex-shrink: 0;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .selectContainer {
+    max-width: 100%;
+  }
+  
+  .selectButton {
+    padding: var(--ds-spacing-2) var(--ds-spacing-3);
+    font-size: var(--ds-typography-fontSize-xs);
+  }
+  
+  .selectItem {
+    padding: var(--ds-spacing-1) var(--ds-spacing-2);
+    font-size: var(--ds-typography-fontSize-xs);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .selectButton {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+    color: var(--ds-darkMode-semantic-text-primary);
+    
+    &:hover:not(:disabled) {
+      border-color: var(--ds-darkMode-semantic-border-focus);
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+    }
+    
+    &:focus {
+      border-color: var(--ds-darkMode-semantic-border-focus);
+    }
+    
+    &:disabled {
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+      border-color: var(--ds-darkMode-semantic-border-primary);
+      color: var(--ds-darkMode-semantic-text-disabled);
+    }
+  }
+  
+  .selectButtonOpen {
+    border-color: var(--ds-darkMode-semantic-border-focus);
+    background-color: var(--ds-darkMode-semantic-background-secondary);
+  }
+  
+  .selectIcon {
+    color: var(--ds-darkMode-semantic-text-secondary);
+  }
+  
+  .selectMenu {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .selectItem {
+    color: var(--ds-darkMode-semantic-text-primary);
+    
+    &:hover {
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+    }
+  }
+  
+  .selectItemHighlighted {
+    background-color: var(--ds-darkMode-semantic-background-secondary);
+  }
+  
+  .selectItemSelected {
+    background-color: var(--ds-darkMode-semantic-background-tertiary);
+  }
+  
+  .selectItemCheck {
+    color: var(--ds-darkMode-semantic-text-primary);
+  }
+}

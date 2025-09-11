@@ -1,0 +1,158 @@
+@import '../../theme/theme.scss';
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-2);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--ds-typography-fontSize-sm);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-tight);
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-1);
+}
+
+.labelRequired {
+  // Additional styles for required labels if needed
+}
+
+.requiredIndicator {
+  color: var(--ds-semantic-text-error);
+  font-weight: var(--ds-typography-fontWeight-bold);
+  font-size: var(--ds-typography-fontSize-sm);
+  line-height: 1;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+  
+  // Ensure input takes full width
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+}
+
+.error {
+  font-size: var(--ds-typography-fontSize-xs);
+  color: var(--ds-semantic-text-error);
+  line-height: var(--ds-typography-lineHeight-tight);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-spacing-1);
+  
+  // Add error icon if needed
+  &::before {
+    content: '⚠';
+    font-size: var(--ds-typography-fontSize-xs);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.125rem; // Slight adjustment for better alignment
+  }
+}
+
+.help {
+  font-size: var(--ds-typography-fontSize-xs);
+  color: var(--ds-semantic-text-secondary);
+  line-height: var(--ds-typography-lineHeight-tight);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-spacing-1);
+  
+  // Add help icon if needed
+  &::before {
+    content: 'ℹ';
+    font-size: var(--ds-typography-fontSize-xs);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.125rem; // Slight adjustment for better alignment
+  }
+}
+
+// Focus states for the input container
+.inputContainer:focus-within {
+  .label {
+    color: var(--ds-semantic-text-primary);
+  }
+}
+
+// Error state styling
+.formField:has(.error) {
+  .label {
+    color: var(--ds-semantic-text-error);
+  }
+  
+  .inputContainer {
+    input,
+    textarea,
+    select {
+      border-color: var(--ds-semantic-border-error);
+      
+      &:focus {
+        border-color: var(--ds-semantic-border-error);
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .formField {
+    gap: var(--ds-spacing-1);
+  }
+  
+  .label {
+    font-size: var(--ds-typography-fontSize-xs);
+  }
+  
+  .error,
+  .help {
+    font-size: 0.6875rem; // 11px
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: var(--ds-darkMode-semantic-text-primary);
+  }
+  
+  .requiredIndicator {
+    color: var(--ds-darkMode-semantic-text-error);
+  }
+  
+  .error {
+    color: var(--ds-darkMode-semantic-text-error);
+  }
+  
+  .help {
+    color: var(--ds-darkMode-semantic-text-secondary);
+  }
+  
+  .formField:has(.error) {
+    .label {
+      color: var(--ds-darkMode-semantic-text-error);
+    }
+    
+    .inputContainer {
+      input,
+      textarea,
+      select {
+        border-color: var(--ds-darkMode-semantic-border-error);
+        
+        &:focus {
+          border-color: var(--ds-darkMode-semantic-border-error);
+          box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.1);
+        }
+      }
+    }
+  }
+}

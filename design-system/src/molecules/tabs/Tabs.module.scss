@@ -1,0 +1,155 @@
+@import '../../theme/theme.scss';
+
+.tabs {
+  width: 100%;
+}
+
+.tabsList {
+  display: flex;
+  border-bottom: 1px solid var(--ds-semantic-border-secondary);
+  margin-bottom: var(--ds-spacing-4);
+  overflow-x: auto;
+  
+  // Hide scrollbar but keep functionality
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--ds-semantic-background-secondary);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--ds-semantic-border-primary);
+    border-radius: var(--ds-radius-sm);
+  }
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: var(--ds-spacing-3) var(--ds-spacing-4);
+  cursor: pointer;
+  font-size: var(--ds-typography-fontSize-sm);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  color: var(--ds-semantic-text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all var(--ds-animation-duration-150) var(--ds-animation-easing-out);
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  
+  &:hover:not(:disabled) {
+    color: var(--ds-semantic-text-primary);
+    background-color: var(--ds-semantic-background-secondary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-semantic-border-focus);
+    outline-offset: -2px;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: var(--ds-semantic-background-tertiary);
+  }
+  
+  &[aria-selected="true"] {
+    color: var(--ds-semantic-text-primary);
+    border-bottom-color: var(--ds-semantic-border-focus);
+    background-color: var(--ds-semantic-background-primary);
+  }
+  
+  &:disabled {
+    color: var(--ds-semantic-text-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.tabActive {
+  color: var(--ds-semantic-text-primary);
+  border-bottom-color: var(--ds-semantic-border-focus);
+  background-color: var(--ds-semantic-background-primary);
+}
+
+.tabDisabled {
+  color: var(--ds-semantic-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tabsPanels {
+  width: 100%;
+}
+
+.tabPanel {
+  padding: var(--ds-spacing-4);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+  
+  // Animation for panel transitions
+  animation: fadeIn var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .tabsList {
+    margin-bottom: var(--ds-spacing-3);
+  }
+  
+  .tab {
+    padding: var(--ds-spacing-2) var(--ds-spacing-3);
+    font-size: var(--ds-typography-fontSize-xs);
+  }
+  
+  .tabPanel {
+    padding: var(--ds-spacing-3);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .tabsList {
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .tab {
+    color: var(--ds-darkMode-semantic-text-secondary);
+    
+    &:hover:not(:disabled) {
+      color: var(--ds-darkMode-semantic-text-primary);
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+    }
+    
+    &[aria-selected="true"] {
+      color: var(--ds-darkMode-semantic-text-primary);
+      border-bottom-color: var(--ds-darkMode-semantic-border-focus);
+      background-color: var(--ds-darkMode-semantic-background-primary);
+    }
+    
+    &:disabled {
+      color: var(--ds-darkMode-semantic-text-disabled);
+    }
+  }
+  
+  .tabActive {
+    color: var(--ds-darkMode-semantic-text-primary);
+    border-bottom-color: var(--ds-darkMode-semantic-border-focus);
+    background-color: var(--ds-darkMode-semantic-background-primary);
+  }
+  
+  .tabPanel {
+    color: var(--ds-darkMode-semantic-text-primary);
+  }
+}
