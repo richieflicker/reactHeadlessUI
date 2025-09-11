@@ -90,32 +90,32 @@
 }
 
 /* Size variants */
-.root.sizeSm .input {
+.root.size-sm .input {
   padding: var(--ds-spacing-2);
   font-size: var(--ds-typography-sizes-sm);
 }
 
-.root.sizeSm .prefix {
+.root.size-sm .prefix {
   padding-left: var(--ds-spacing-2);
   padding-right: var(--ds-spacing-1);
 }
 
-.root.sizeSm .suffix {
+.root.size-sm .suffix {
   padding-right: var(--ds-spacing-2);
   padding-left: var(--ds-spacing-1);
 }
 
-.root.sizeLg .input {
+.root.size-lg .input {
   padding: var(--ds-spacing-4);
   font-size: var(--ds-typography-sizes-lg);
 }
 
-.root.sizeLg .prefix {
+.root.size-lg .prefix {
   padding-left: var(--ds-spacing-4);
   padding-right: var(--ds-spacing-3);
 }
 
-.root.sizeLg .suffix {
+.root.size-lg .suffix {
   padding-right: var(--ds-spacing-4);
   padding-left: var(--ds-spacing-3);
 }

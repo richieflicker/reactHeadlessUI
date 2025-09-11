@@ -107,57 +107,57 @@
 }
 
 /* Size variants */
-.root.sizeSm .switch {
+.root.size-sm .switch {
   width: 32px;
   height: 18px;
 }
 
-.root.sizeSm .switchThumb {
+.root.size-sm .switchThumb {
   width: 14px;
   height: 14px;
 }
 
-.root.sizeSm .switchChecked .switchThumb {
+.root.size-sm .switchChecked .switchThumb {
   transform: translateX(14px);
 }
 
-.root.sizeSm .label {
+.root.size-sm .label {
   font-size: var(--ds-typography-sizes-sm);
 }
 
-.root.sizeMd .switch {
+.root.size-md .switch {
   width: 40px;
   height: 20px;
 }
 
-.root.sizeMd .switchThumb {
+.root.size-md .switchThumb {
   width: 16px;
   height: 16px;
 }
 
-.root.sizeMd .switchChecked .switchThumb {
+.root.size-md .switchChecked .switchThumb {
   transform: translateX(20px);
 }
 
-.root.sizeMd .label {
+.root.size-md .label {
   font-size: var(--ds-typography-sizes-md);
 }
 
-.root.sizeLg .switch {
+.root.size-lg .switch {
   width: 48px;
   height: 24px;
 }
 
-.root.sizeLg .switchThumb {
+.root.size-lg .switchThumb {
   width: 20px;
   height: 20px;
 }
 
-.root.sizeLg .switchChecked .switchThumb {
+.root.size-lg .switchChecked .switchThumb {
   transform: translateX(24px);
 }
 
-.root.sizeLg .label {
+.root.size-lg .label {
   font-size: var(--ds-typography-sizes-lg);
 }
 

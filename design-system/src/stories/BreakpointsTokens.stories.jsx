@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from '../theme/ThemeProvider';
+import React from 'react';
+
 import themeJson from '../theme/theme.json';
+import ThemeProvider from '../theme/ThemeProvider';
+import { useViewport } from '../hooks';
 
 export default {
   title: 'Design Tokens/Breakpoints',
   component: () => null,
   decorators: [
+    // eslint-disable-next-line no-unused-vars
     (Story) => (
       <ThemeProvider theme={themeJson}>
         <div style={{ padding: '2rem', fontFamily: 'var(--ds-typography-fontFamily-sans)' }}>
@@ -85,35 +88,7 @@ export const BreakpointsOverview = {
 
 // Current Viewport Detection
 const ViewportDetector = () => {
-  const [viewport, setViewport] = useState({ width: 0, height: 0, currentBreakpoint: '' });
-
-  useEffect(() => {
-    const updateViewport = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      
-      let currentBreakpoint = '';
-      if (width >= parseInt(themeJson.breakpoints['2xl'])) {
-        currentBreakpoint = '2xl';
-      } else if (width >= parseInt(themeJson.breakpoints.xl)) {
-        currentBreakpoint = 'xl';
-      } else if (width >= parseInt(themeJson.breakpoints.lg)) {
-        currentBreakpoint = 'lg';
-      } else if (width >= parseInt(themeJson.breakpoints.md)) {
-        currentBreakpoint = 'md';
-      } else if (width >= parseInt(themeJson.breakpoints.sm)) {
-        currentBreakpoint = 'sm';
-      } else {
-        currentBreakpoint = 'xs (below sm)';
-      }
-
-      setViewport({ width, height, currentBreakpoint });
-    };
-
-    updateViewport();
-    window.addEventListener('resize', updateViewport);
-    return () => window.removeEventListener('resize', updateViewport);
-  }, []);
+  const viewport = useViewport();
 
   return (
     <div style={{ 
@@ -149,6 +124,44 @@ export const CurrentViewport = {
       <p style={{ fontSize: '0.875rem', color: 'var(--ds-colors-neutral-600)' }}>
         Resize your browser window to see the current viewport dimensions and active breakpoint update in real-time.
       </p>
+      
+      <div style={{ 
+        padding: '1rem',
+        backgroundColor: 'var(--ds-colors-info-50)',
+        border: '1px solid var(--ds-colors-info-200)',
+        borderRadius: 'var(--ds-radius-base)',
+        marginTop: '1rem'
+      }}>
+        <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem', color: 'var(--ds-colors-info-700)' }}>
+          Usage Example
+        </h3>
+        <p style={{ fontSize: '0.875rem', color: 'var(--ds-colors-info-600)', marginBottom: '0.5rem' }}>
+          The ViewportDetector component above uses the <code>useViewport</code> hook:
+        </p>
+        <div style={{ 
+          fontSize: '0.75rem',
+          fontFamily: 'var(--ds-typography-fontFamily-mono)',
+          backgroundColor: 'var(--ds-colors-info-100)',
+          padding: '0.75rem',
+          borderRadius: 'var(--ds-radius-sm)',
+          color: 'var(--ds-colors-info-700)',
+          overflow: 'auto'
+        }}>
+{`import { useViewport } from '../index.js';
+
+const MyComponent = () => {
+  const viewport = useViewport();
+  
+  return (
+    <div>
+      <p>Width: {viewport.width}px</p>
+      <p>Height: {viewport.height}px</p>
+      <p>Breakpoint: {viewport.currentBreakpoint}</p>
+    </div>
+  );
+};`}
+        </div>
+      </div>
     </div>
   )
 };

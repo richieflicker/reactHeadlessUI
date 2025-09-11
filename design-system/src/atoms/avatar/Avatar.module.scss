@@ -31,24 +31,23 @@
 }
 
 /* Size variants */
-.root.sizeSm {
+.root.size{
+  &-sm {
   width: 24px;
   height: 24px;
   font-size: var(--ds-typography-sizes-xs);
 }
-
-.root.sizeMd {
+  &-md {
   width: 40px;
   height: 40px;
   font-size: var(--ds-typography-sizes-sm);
 }
-
-.root.sizeLg {
+  &-lg {
   width: 64px;
   height: 64px;
   font-size: var(--ds-typography-sizes-lg);
 }
-
+}
 /* Hover effects */
 .root:hover {
   transform: scale(1.05);
@@ -114,17 +113,17 @@
 }
 
 /* Size-specific status indicators */
-.root.sizeSm.statusOnline::after,
-.root.sizeSm.statusAway::after,
-.root.sizeSm.statusOffline::after {
+.root.size-sm.statusOnline::after,
+.root.size-sm.statusAway::after,
+.root.size-sm.statusOffline::after {
   width: 6px;
   height: 6px;
   border-width: 1px;
 }
 
-.root.sizeLg.statusOnline::after,
-.root.sizeLg.statusAway::after,
-.root.sizeLg.statusOffline::after {
+.root.size-lg.statusOnline::after,
+.root.size-lg.statusAway::after,
+.root.size-lg.statusOffline::after {
   width: 16px;
   height: 16px;
   border-width: 3px;

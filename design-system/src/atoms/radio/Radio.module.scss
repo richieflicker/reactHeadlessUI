@@ -132,31 +132,31 @@
 }
 
 /* Size variants */
-.root.sizeSm .radio {
+.root.size-sm .radio {
   width: 16px;
   height: 16px;
 }
 
-.root.sizeSm .radioDot {
+.root.size-sm .radioDot {
   width: 8px;
   height: 8px;
 }
 
-.root.sizeSm .label {
+.root.size-sm .label {
   font-size: var(--ds-typography-sizes-sm);
 }
 
-.root.sizeLg .radio {
+.root.size-lg .radio {
   width: 24px;
   height: 24px;
 }
 
-.root.sizeLg .radioDot {
+.root.size-lg .radioDot {
   width: 12px;
   height: 12px;
 }
 
-.root.sizeLg .label {
+.root.size-lg .label {
   font-size: var(--ds-typography-sizes-lg);
 }
 

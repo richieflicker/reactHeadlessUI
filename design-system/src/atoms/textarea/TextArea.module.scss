@@ -78,13 +78,13 @@
 }
 
 /* Size variants */
-.root.sizeSm .textarea {
+.root.size-sm .textarea {
   padding: var(--ds-spacing-2);
   font-size: var(--ds-typography-sizes-sm);
   min-height: calc(var(--ds-spacing-2) * 2 + 1.25em);
 }
 
-.root.sizeLg .textarea {
+.root.size-lg .textarea {
   padding: var(--ds-spacing-4);
   font-size: var(--ds-typography-sizes-lg);
   min-height: calc(var(--ds-spacing-4) * 2 + 1.75em);

@@ -143,33 +143,33 @@
 }
 
 /* Size variants */
-.root.sizeSm .checkbox {
+.root.size-sm .checkbox {
   width: 16px;
   height: 16px;
 }
 
-.root.sizeSm .checkmark,
-.root.sizeSm .indeterminateMark {
+.root.size-sm .checkmark,
+.root.size-sm .indeterminateMark {
   width: 12px;
   height: 12px;
 }
 
-.root.sizeSm .label {
+.root.size-sm .label {
   font-size: var(--ds-typography-sizes-sm);
 }
 
-.root.sizeLg .checkbox {
+.root.size-lg .checkbox {
   width: 24px;
   height: 24px;
 }
 
-.root.sizeLg .checkmark,
-.root.sizeLg .indeterminateMark {
+.root.size-lg .checkmark,
+.root.size-lg .indeterminateMark {
   width: 16px;
   height: 16px;
 }
 
-.root.sizeLg .label {
+.root.size-lg .label {
   font-size: var(--ds-typography-sizes-lg);
 }
 

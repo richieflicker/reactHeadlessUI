@@ -38,7 +38,7 @@ export function Avatar({
   };
 
   const shouldShowImage = src && !imageError;
-  const displayFallback = (typeof fallback === 'string' && fallback.trim() ? fallback : null) || alt || 'User';
+  const displayFallback = (typeof fallback === 'string' && fallback.trim() ? fallback : null) || alt || '?';
 
   return (
     <div className={classNames} {...rest}>
