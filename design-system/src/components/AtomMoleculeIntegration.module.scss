@@ -1,0 +1,213 @@
+@import '../theme/tokens.scss';
+
+.integrationShowcase {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--ds-spacing-6);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--ds-spacing-8);
+}
+
+.title {
+  margin-bottom: var(--ds-spacing-4);
+  color: var(--ds-semantic-text-primary);
+}
+
+.subtitle {
+  color: var(--ds-semantic-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: var(--ds-spacing-12);
+}
+
+.sectionTitle {
+  margin-bottom: var(--ds-spacing-2);
+  color: var(--ds-semantic-text-primary);
+}
+
+.sectionDescription {
+  margin-bottom: var(--ds-spacing-6);
+  color: var(--ds-semantic-text-secondary);
+}
+
+// Form Styles
+.formCard {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.formGrid {
+  display: grid;
+  gap: var(--ds-spacing-6);
+}
+
+.checkboxGroup {
+  .preferenceItem {
+    display: flex;
+    align-items: center;
+    gap: var(--ds-spacing-3);
+    margin-bottom: var(--ds-spacing-4);
+  }
+  
+  .preferenceLabel {
+    flex: 1;
+    color: var(--ds-semantic-text-primary);
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: var(--ds-spacing-3);
+  justify-content: flex-end;
+}
+
+// Card Grid
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--ds-spacing-6);
+}
+
+.featureCard {
+  .statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ds-spacing-4);
+    margin-bottom: var(--ds-spacing-4);
+  }
+  
+  .statItem {
+    text-align: center;
+    padding: var(--ds-spacing-4);
+    background: var(--ds-semantic-background-secondary);
+    border-radius: var(--ds-radius-md);
+  }
+  
+  .statNumber {
+    color: var(--ds-semantic-interactive-primary-default);
+    margin-bottom: var(--ds-spacing-1);
+  }
+  
+  .statLabel {
+    color: var(--ds-semantic-text-secondary);
+  }
+}
+
+.notificationCard {
+  .statusList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-spacing-3);
+  }
+  
+  .statusItem {
+    display: flex;
+    align-items: center;
+    gap: var(--ds-spacing-3);
+    padding: var(--ds-spacing-3);
+    background: var(--ds-semantic-background-secondary);
+    border-radius: var(--ds-radius-sm);
+  }
+  
+  .statusIcon {
+    color: var(--ds-semantic-text-tertiary);
+  }
+}
+
+.cardActions {
+  display: flex;
+  gap: var(--ds-spacing-2);
+  flex-wrap: wrap;
+}
+
+// Modal Styles
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-3);
+}
+
+.notificationSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-4);
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ds-spacing-3);
+  background: var(--ds-semantic-background-secondary);
+  border-radius: var(--ds-radius-sm);
+}
+
+// Benefits Grid
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ds-spacing-6);
+}
+
+.benefitCard {
+  text-align: center;
+  
+  .cardHeader {
+    text-align: center;
+    
+    .cardTitle {
+      font-size: var(--ds-typography-fontSize-lg);
+      margin-bottom: var(--ds-spacing-2);
+    }
+    
+    .cardSubtitle {
+      color: var(--ds-semantic-text-secondary);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .integrationShowcase {
+    padding: var(--ds-spacing-4);
+  }
+  
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+  
+  .cardActions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+  .statItem,
+  .statusItem,
+  .settingItem {
+    background: var(--ds-semantic-background-tertiary);
+  }
+}

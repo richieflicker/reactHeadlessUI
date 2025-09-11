@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Tabs, Accordion, Select, FormField, Card } from '../molecules';
-import { Button } from '../atoms/button/Button';
+import { Button, Typography, Input, TextArea, Checkbox, Switch, Badge, Avatar, Icon } from '../atoms';
 import styles from './MoleculesShowcase.module.scss';
 
 export const MoleculesShowcase = () => {
@@ -115,85 +115,128 @@ export const MoleculesShowcase = () => {
       </section>
 
       <section className={styles.section}>
-        <h2>5. FormField</h2>
-        <p>A wrapper component for form inputs with label, help text, and error handling.</p>
+        <h2>5. FormField with Atom Integration</h2>
+        <p>A wrapper component that seamlessly integrates with Input, TextArea, and Typography atoms.</p>
         <div style={{ width: '400px' }}>
           <FormField
             label="Name"
             help="Enter your full name"
             required
-          >
-            <input
-              type="text"
-              placeholder="John Doe"
-              style={{
-                padding: '0.5rem',
-                border: '1px solid var(--ds-semantic-border-primary)',
-                borderRadius: 'var(--ds-radius-sm)',
-                fontSize: 'var(--ds-typography-fontSize-sm)',
-                width: '100%',
-              }}
-            />
-          </FormField>
+            inputType="input"
+            inputProps={{
+              placeholder: 'John Doe',
+              value: formData.name,
+              onChange: (e) => setFormData(prev => ({ ...prev, name: e.target.value }))
+            }}
+          />
           
           <FormField
             label="Email"
             error="Please enter a valid email address"
             required
-          >
-            <input
-              type="email"
-              placeholder="john@example.com"
-              style={{
-                padding: '0.5rem',
-                border: '1px solid var(--ds-semantic-border-error)',
-                borderRadius: 'var(--ds-radius-sm)',
-                fontSize: 'var(--ds-typography-fontSize-sm)',
-                width: '100%',
-              }}
-            />
-          </FormField>
+            inputType="input"
+            inputProps={{
+              type: 'email',
+              placeholder: 'john@example.com',
+              value: formData.email,
+              onChange: (e) => setFormData(prev => ({ ...prev, email: e.target.value }))
+            }}
+          />
+          
+          <FormField
+            label="Message"
+            help="Tell us about your project"
+            inputType="textarea"
+            inputProps={{
+              placeholder: 'Describe your project...',
+              rows: 4,
+              value: formData.message,
+              onChange: (e) => setFormData(prev => ({ ...prev, message: e.target.value }))
+            }}
+          />
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2>6. Card</h2>
-        <p>A flexible container component with header, body, and footer slots.</p>
+        <h2>6. Card with Atom Integration</h2>
+        <p>A flexible container that integrates Typography, Button, Badge, Avatar, and Icon atoms.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem' }}>
           <Card variant="outlined">
-            <Card.Header>
-              <h3 style={{ margin: 0 }}>Outlined Card</h3>
-            </Card.Header>
+            <Card.Header
+              title="User Profile"
+              subtitle="Welcome back, Sarah!"
+              action={
+                <Avatar 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face"
+                  size="sm"
+                />
+              }
+            />
             <Card.Body>
-              <p>This is an outlined card with a subtle border.</p>
+              <Typography variant="body1">
+                This card demonstrates integration with Typography, Avatar, and Button atoms.
+              </Typography>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="primary">Action</Button>
-            </Card.Footer>
+            <Card.Footer
+              actions={
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <Button variant="primary" size="sm">Edit</Button>
+                  <Button variant="secondary" size="sm">View</Button>
+                </div>
+              }
+            />
           </Card>
           
           <Card variant="shadowed">
-            <Card.Header>
-              <h3 style={{ margin: 0 }}>Shadowed Card</h3>
-            </Card.Header>
+            <Card.Header
+              title="System Status"
+              action={
+                <Badge variant="success" size="sm">
+                  <Icon name="check" size="sm" />
+                  Online
+                </Badge>
+              }
+            />
             <Card.Body>
-              <p>This card has a subtle shadow for depth.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Icon name="server" size="sm" />
+                  <Typography variant="body2">API Server</Typography>
+                  <Badge variant="success" size="xs">Healthy</Badge>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Icon name="database" size="sm" />
+                  <Typography variant="body2">Database</Typography>
+                  <Badge variant="success" size="xs">Healthy</Badge>
+                </div>
+              </div>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="secondary">Action</Button>
-            </Card.Footer>
           </Card>
           
           <Card variant="elevated">
-            <Card.Header>
-              <h3 style={{ margin: 0 }}>Elevated Card</h3>
-            </Card.Header>
+            <Card.Header
+              title="Project Stats"
+              subtitle="Last updated 2 hours ago"
+            />
             <Card.Body>
-              <p>This card has a more prominent shadow for emphasis.</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div style={{ textAlign: 'center', padding: '1rem', background: 'var(--ds-semantic-background-secondary)', borderRadius: 'var(--ds-radius-sm)' }}>
+                  <Typography variant="h3" style={{ color: 'var(--ds-semantic-interactive-primary-default)', margin: 0 }}>1,234</Typography>
+                  <Typography variant="body2" style={{ color: 'var(--ds-semantic-text-secondary)' }}>Total Users</Typography>
+                </div>
+                <div style={{ textAlign: 'center', padding: '1rem', background: 'var(--ds-semantic-background-secondary)', borderRadius: 'var(--ds-radius-sm)' }}>
+                  <Typography variant="h3" style={{ color: 'var(--ds-semantic-interactive-primary-default)', margin: 0 }}>567</Typography>
+                  <Typography variant="body2" style={{ color: 'var(--ds-semantic-text-secondary)' }}>Active Today</Typography>
+                </div>
+              </div>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="primary">Action</Button>
-            </Card.Footer>
+            <Card.Footer
+              actions={
+                <Button variant="primary" size="sm" prefix="📊">
+                  View Analytics
+                </Button>
+              }
+            />
           </Card>
         </div>
       </section>
