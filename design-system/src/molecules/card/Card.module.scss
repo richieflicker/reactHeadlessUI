@@ -1,0 +1,150 @@
+@import '../../theme/theme.scss';
+
+.card {
+  background-color: var(--ds-semantic-background-primary);
+  border-radius: var(--ds-radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: all var(--ds-animation-duration-150) var(--ds-animation-easing-out);
+}
+
+.cardOutlined {
+  border: 1px solid var(--ds-semantic-border-primary);
+}
+
+.cardShadowed {
+  box-shadow: var(--ds-shadow-base);
+  border: 1px solid var(--ds-semantic-border-secondary);
+}
+
+.cardElevated {
+  box-shadow: var(--ds-shadow-lg);
+  border: 1px solid var(--ds-semantic-border-secondary);
+}
+
+.cardHeader {
+  padding: var(--ds-spacing-6);
+  border-bottom: 1px solid var(--ds-semantic-border-secondary);
+  background-color: var(--ds-semantic-background-primary);
+  flex-shrink: 0;
+  
+  // Remove bottom border if no body content
+  .card:not(:has(.cardBody)) & {
+    border-bottom: none;
+  }
+}
+
+.cardBody {
+  padding: var(--ds-spacing-6);
+  flex: 1;
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+  
+  // Remove padding if no header or footer
+  .card:not(:has(.cardHeader)) & {
+    padding-top: var(--ds-spacing-6);
+  }
+  
+  .card:not(:has(.cardFooter)) & {
+    padding-bottom: var(--ds-spacing-6);
+  }
+}
+
+.cardFooter {
+  padding: var(--ds-spacing-6);
+  border-top: 1px solid var(--ds-semantic-border-secondary);
+  background-color: var(--ds-semantic-background-primary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-spacing-3);
+  
+  // Remove top border if no body content
+  .card:not(:has(.cardBody)) & {
+    border-top: none;
+  }
+}
+
+// Hover effects
+.card:hover {
+  &.cardOutlined {
+    border-color: var(--ds-semantic-border-focus);
+  }
+  
+  &.cardShadowed {
+    box-shadow: var(--ds-shadow-md);
+    transform: translateY(-1px);
+  }
+  
+  &.cardElevated {
+    box-shadow: var(--ds-shadow-xl);
+    transform: translateY(-2px);
+  }
+}
+
+// Focus states for interactive cards
+.card:focus-within {
+  outline: 2px solid var(--ds-semantic-border-focus);
+  outline-offset: 2px;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .cardHeader,
+  .cardBody,
+  .cardFooter {
+    padding: var(--ds-spacing-4);
+  }
+  
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ds-spacing-2);
+    
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+  }
+  
+  .cardOutlined {
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .cardShadowed {
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .cardElevated {
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .cardHeader {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .cardBody {
+    color: var(--ds-darkMode-semantic-text-primary);
+  }
+  
+  .cardFooter {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .card:hover {
+    &.cardOutlined {
+      border-color: var(--ds-darkMode-semantic-border-focus);
+    }
+  }
+}

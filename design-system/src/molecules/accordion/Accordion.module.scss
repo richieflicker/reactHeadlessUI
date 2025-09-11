@@ -1,0 +1,172 @@
+@import '../../theme/theme.scss';
+
+.accordion {
+  width: 100%;
+  border: 1px solid var(--ds-semantic-border-secondary);
+  border-radius: var(--ds-radius-lg);
+  overflow: hidden;
+  background-color: var(--ds-semantic-background-primary);
+}
+
+.accordionItem {
+  border-bottom: 1px solid var(--ds-semantic-border-secondary);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.accordionHeader {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: var(--ds-spacing-4) var(--ds-spacing-6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  font-size: var(--ds-typography-fontSize-base);
+  font-weight: var(--ds-typography-fontWeight-medium);
+  color: var(--ds-semantic-text-primary);
+  transition: all var(--ds-animation-duration-150) var(--ds-animation-easing-out);
+  position: relative;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--ds-semantic-background-secondary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-semantic-border-focus);
+    outline-offset: -2px;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: var(--ds-semantic-background-tertiary);
+  }
+  
+  &[aria-expanded="true"] {
+    background-color: var(--ds-semantic-background-secondary);
+    border-bottom: 1px solid var(--ds-semantic-border-secondary);
+  }
+  
+  &:disabled {
+    color: var(--ds-semantic-text-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.accordionHeaderOpen {
+  background-color: var(--ds-semantic-background-secondary);
+  border-bottom: 1px solid var(--ds-semantic-border-secondary);
+}
+
+.accordionHeaderDisabled {
+  color: var(--ds-semantic-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.accordionHeaderContent {
+  flex: 1;
+  line-height: var(--ds-typography-lineHeight-tight);
+}
+
+.accordionIcon {
+  font-size: var(--ds-typography-fontSize-sm);
+  color: var(--ds-semantic-text-secondary);
+  transition: transform var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+  margin-left: var(--ds-spacing-2);
+  flex-shrink: 0;
+}
+
+.accordionIconOpen {
+  transform: rotate(180deg);
+}
+
+.accordionBody {
+  background-color: var(--ds-semantic-background-primary);
+  border-top: 1px solid var(--ds-semantic-border-secondary);
+  animation: slideDown var(--ds-animation-duration-200) var(--ds-animation-easing-out);
+}
+
+.accordionBodyContent {
+  padding: var(--ds-spacing-4) var(--ds-spacing-6);
+  color: var(--ds-semantic-text-primary);
+  line-height: var(--ds-typography-lineHeight-normal);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px; // Large enough for most content
+    padding-top: var(--ds-spacing-4);
+    padding-bottom: var(--ds-spacing-4);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .accordionHeader {
+    padding: var(--ds-spacing-3) var(--ds-spacing-4);
+    font-size: var(--ds-typography-fontSize-sm);
+  }
+  
+  .accordionBodyContent {
+    padding: var(--ds-spacing-3) var(--ds-spacing-4);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .accordion {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .accordionItem {
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .accordionHeader {
+    color: var(--ds-darkMode-semantic-text-primary);
+    
+    &:hover:not(:disabled) {
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+    }
+    
+    &[aria-expanded="true"] {
+      background-color: var(--ds-darkMode-semantic-background-secondary);
+      border-color: var(--ds-darkMode-semantic-border-primary);
+    }
+    
+    &:disabled {
+      color: var(--ds-darkMode-semantic-text-disabled);
+    }
+  }
+  
+  .accordionHeaderOpen {
+    background-color: var(--ds-darkMode-semantic-background-secondary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .accordionIcon {
+    color: var(--ds-darkMode-semantic-text-secondary);
+  }
+  
+  .accordionBody {
+    background-color: var(--ds-darkMode-semantic-background-primary);
+    border-color: var(--ds-darkMode-semantic-border-primary);
+  }
+  
+  .accordionBodyContent {
+    color: var(--ds-darkMode-semantic-text-primary);
+  }
+}

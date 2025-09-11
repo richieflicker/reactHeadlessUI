@@ -4,6 +4,7 @@ import { ThemeContextProvider } from './theme/ThemeContext'
 import { Button } from './atoms/button/Button'
 import { ThemeToggle } from './atoms/theme-toggle/ThemeToggle'
 import { ThemeShowcase } from './components/ThemeShowcase'
+import { MoleculesShowcase } from './components/MoleculesShowcase'
 import styles from './App.module.scss'
 
 function App() {
@@ -106,6 +107,11 @@ function App() {
           </section>
 
           <ThemeShowcase />
+          
+          <section className={styles.section}>
+            <h2>Foundation Molecules</h2>
+            <MoleculesShowcase />
+          </section>
         </main>
         </div>
       </ThemeProvider>
